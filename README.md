@@ -1,7 +1,5 @@
 # docker-mvs38j
-Build Docker container with MVS TK5 and c3270
-
-Use the shell script to build a new image
+Build new Docker image with MVS TK5 and c3270 using the shell script
 
 ```sh
 ./buildImage.sh
@@ -20,6 +18,10 @@ How to connect to MVS in the container using the included c3270 emulator
 ```sh
 docker exec -it myMVS c3270 localhost:3270
 ```
+
+Example of a running MVS Container and c3270 emulator, started as described above
+![mvs-c3270](https://github.com/MortenHarding/docker-mvs38j/assets/83698635/585dba67-1761-42cd-bc9a-3ae73aa7fa01)
+
 
 ## References
 
