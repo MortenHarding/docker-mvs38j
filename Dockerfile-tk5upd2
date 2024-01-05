@@ -8,6 +8,7 @@ ENV LANG en_US.utf8
 
 # Setup MVS
 WORKDIR /app/mvs
+EXPOSE 3270 8080 3221 3223 3505 3506 8888
 RUN curl -O https://www.prince-webdesign.nl/images/downloads/mvs-tk5.zip \
 && unzip mvs-tk5.zip -d /app/mvs \
 && rm mvs-tk5.zip \
