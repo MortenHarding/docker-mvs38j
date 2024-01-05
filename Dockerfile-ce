@@ -1,0 +1,9 @@
+# Build MVSCE with c3270 and start of mvs in console mode
+FROM mainframed767/mvsce:2.0.2
+USER root
+WORKDIR /
+COPY mvs.sh /
+RUN apt-get update && apt-get -yq install --no-install-recommends c3270 nano unzip \
+&& apt-get clean \
+&& chmod +x /mvs.sh
+ENTRYPOINT ["/bin/bash","./mvs.sh"]

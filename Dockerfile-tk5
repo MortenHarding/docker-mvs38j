@@ -1,0 +1,20 @@
+# Using Debian as a base
+FROM debian:stable-slim
+RUN apt-get update && apt-get install -y locales curl unzip c3270 netbase \
+&& rm -rf /var/lib/apt/lists/* \
+&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
+&& mkdir -p /app/mvs
+ENV LANG en_US.utf8
+
+# Setup MVS
+WORKDIR /app/mvs
+EXPOSE 3270 8080 3221 3223 3505 3506 8888
+COPY 	mvs_docker \
+	mvs-tk5.zip \
+	/app/mvs/
+RUN chmod +x mvs-tk5.zip \
+&& unzip mvs-tk5.zip \
+&& rm mvs-tk5.zip \
+&& mv ./mvs-tk5/* -t /app/mvs \
+&& chmod -R +x /app/mvs*
+ENTRYPOINT ["/bin/bash","./mvs_docker"]
