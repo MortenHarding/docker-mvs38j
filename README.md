@@ -21,7 +21,7 @@ docker exec -it myMVS ./tn3270
 Default username and password is 'herc01' and 'cul8tr'
 
 Example of a running MVS Container and c3270 emulator, started as described above
-![mvs-c3270](https://github.com/MortenHarding/docker-mvs38j/assets/83698635/585dba67-1761-42cd-bc9a-3ae73aa7fa01)
+![mvs-c3270](assets/mvs-c3270.jpg)
 
 ## References
 
