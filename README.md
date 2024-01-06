@@ -1,6 +1,6 @@
 ## _MVS 3.8j and c3270 emulator in one container_
 
-How to start a container with MVS 3.8j using the latest image, which currently is MVS/CE
+To start a container with MVS 3.8j using the latest image, containing MVS/CE
 
 ```sh
 docker run -it --name myMVS -p 3270:3270/tcp mhardingdk/mvs
