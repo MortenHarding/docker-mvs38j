@@ -1,1 +1,2 @@
+#!/bin/bash
 c3270 localhost:3270

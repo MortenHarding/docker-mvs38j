@@ -9,10 +9,12 @@ ENV LANG en_US.utf8
 # Setup MVS
 WORKDIR /app/mvs
 EXPOSE 3270 8080 3221 3223 3505 3506 8888
+COPY 	mvs_docker \
+	tn3270 \
+	/app/mvs/
 RUN curl -O https://www.prince-webdesign.nl/images/downloads/mvs-tk5.zip \
 && unzip mvs-tk5.zip -d /app/mvs \
 && rm mvs-tk5.zip \
 && mv ./mvs-tk5/* -t /app/mvs \
 && chmod -R +x /app/mvs*
-ADD mvs_docker /app/mvs/mvs_docker
 ENTRYPOINT ["/bin/bash","./mvs_docker"]

@@ -10,9 +10,10 @@ ENV LANG en_US.utf8
 WORKDIR /app/mvs
 EXPOSE 3270 8080 3221 3223 3505 3506 8888
 COPY 	mvs_docker \
-	tk4-_v1.00_current.zip \
+	tn3270 \
 	/app/mvs/
-RUN chmod +x tk4-_v1.00_current.zip \
+RUN curl -k -O https://wotho.pebble-beach.ch/tk4-/tk4-_v1.00_current.zip \
+&& chmod +x tk4-_v1.00_current.zip \
 && unzip tk4-_v1.00_current.zip -d /app/mvs \
 && rm tk4-_v1.00_current.zip \
 && chmod -R +x /app/mvs/*

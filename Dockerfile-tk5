@@ -11,6 +11,7 @@ WORKDIR /app/mvs
 EXPOSE 3270 8080 3221 3223 3505 3506 8888
 COPY 	mvs_docker \
 	mvs-tk5.zip \
+	tn3270 \
 	/app/mvs/
 RUN chmod +x mvs-tk5.zip \
 && unzip mvs-tk5.zip \

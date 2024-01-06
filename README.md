@@ -15,7 +15,7 @@ docker run -it --name myMVS -p 3270:3270/tcp mhardingdk/mvs:tk4
 How to connect to MVS in the container using the included c3270 emulator
 
 ```sh
-docker exec -it myMVS c3270 localhost:3270
+docker exec -it myMVS ./tn3270
 ```
 
 Default username and password is 'herc01' and 'cul8tr'
