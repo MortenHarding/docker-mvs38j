@@ -2,8 +2,8 @@
 FROM mainframed767/mvsce:2.0.2
 USER root
 WORKDIR /
-COPY mvs.sh /
-RUN apt-get update && apt-get -yq install --no-install-recommends c3270 nano unzip \
+COPY mvs.sh tn3270 /
+RUN apt-get update && apt-get -yq install --no-install-recommends c3270 unzip \
 && apt-get clean \
 && chmod +x /mvs.sh
 ENTRYPOINT ["/bin/bash","./mvs.sh"]
