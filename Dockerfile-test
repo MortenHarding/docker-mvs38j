@@ -1,0 +1,15 @@
+# Build MVSCE with c3270 and start of mvs in console mode
+FROM mainframed767/mvsce:2.0.2
+USER root
+
+# Setup MVS
+WORKDIR /
+COPY herc4x.zip mvs.sh tn3270 /
+RUN apt-get update && apt-get -yq install --no-install-recommends c3270 unzip \
+&& apt-get clean \
+&& chmod +x /mvs.sh \
+&& chmod +x /tn3270 \
+&& rm -rf /home/hercules/herctest/herc4x \
+&& unzip herc4x.zip -d /home/hercules/herctest \
+&& chmod -R +x /home/hercules/herctest/herc4x
+ENTRYPOINT ["/bin/bash","./mvs.sh"]
