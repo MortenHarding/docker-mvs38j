@@ -6,10 +6,11 @@ RUN apt-get update && apt-get install -y locales curl git zip unzip sudo netbase
 && useradd -m -d /app -s /bin/bash -g root -G sudo -p "$(openssl passwd -1 herc)" herc
 ENV LANG en_US.utf8
 USER herc
+RUN mkdir -p /app/hercules
 WORKDIR /app
 RUN git clone https://github.com/wrljet/hercules-helper.git
 COPY 	herc4.conf \
 	buildHercules.sh \
-	/app/hercules-helper/
-WORKDIR /app/hercules-helper
-ENTRYPOINT ["/bin/bash","-i","./buildHercules.sh"]
+	/app/
+WORKDIR /app/hercules
+ENTRYPOINT ["/bin/bash","-i","/app/buildHercules.sh"]
