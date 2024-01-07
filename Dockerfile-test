@@ -10,10 +10,10 @@ RUN apt-get update && apt-get -yq install --no-install-recommends c3270 unzip \
 && chmod +x /mvs.sh \
 && chmod +x /tn3270 \
 && mkdir app \
-&& unzip hercules.zip -d /app \
-&& rm hercules.zip \
+&& unzip herc4x.zip \
+&& rm herc4x.zip \
 && rm -rf /home/hercules/herctest/herc4x \
 && /app/hercules/herc4x/hyperion-init-bash.sh \
 && chmod -R +x /app/hercules/*
-ENV PATH="/app/hercules/herc4x/bin:$PATH"
+ENV PATH="/app/hercules/herc4x/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 ENTRYPOINT ["/bin/bash"]

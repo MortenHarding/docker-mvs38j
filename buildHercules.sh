@@ -6,5 +6,6 @@ cd /app/hercules
 . /herc4x/hyperion-init-bash.sh
 cd /app
 rm -rf hercules-helper
-zip -r hercules.zip ./hercules
+cd hercules
+zip -r /app/herc4x.zip herc4x
 $SHELL

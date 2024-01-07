@@ -11,10 +11,16 @@ WORKDIR /app/mvs
 EXPOSE 3270 8080 3221 3223 3505 3506 8888
 COPY 	mvs_docker \
 	tn3270 \
+	herc4x.zip \
 	/app/mvs/
 RUN curl -O https://www.prince-webdesign.nl/images/downloads/mvs-tk5.zip \
 && unzip mvs-tk5.zip -d /app/mvs \
 && rm mvs-tk5.zip \
 && mv ./mvs-tk5/* -t /app/mvs \
-&& chmod -R +x /app/mvs*
+&& rm -rf /app/mvs/hercules/linux/64 \
+&& unzip herc4x.zip -d /app/mvs/hercules/linux/ \
+&& mv /app/mvs/hercules/linux/herc4x /app/mvs/hercules/linux/64 \
+&& rm herc4x.zip \
+&& chmod -R +x /app/*
+ENV PATH="/app/hercules/herc4x/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 ENTRYPOINT ["/bin/bash","./mvs_docker"]
