@@ -1,0 +1,59 @@
+@ALIGN NONE
+@SBA 0,0
+@SF P
+Hercules Version  :
+@SF HP
+$(VERSION)
+@NL
+@SF P
+Host name         :
+@SF HP
+$(HOSTNAME)
+@NL
+@SF P
+Host OS           :
+@SF HP
+$(HOSTOS)-$(HOSTOSREL) $(HOSTOSVER)
+@NL
+@SF P
+Host Architecture :
+@SF HP
+$(HOSTARCH)
+@NL
+@SF P
+Processors        :
+@SF HP
+$(HOSTNUMCPUS)
+@NL
+@SF P
+LPAR Name         :
+@SF HP
+$(LPARNAME)
+@NL
+@SF P
+Device number     :
+@SF HP
+$(CSS):$(CCUU)
+@NL
+@SF P
+Subchannel        :
+@SF HP
+$(SUBCHAN)
+@SF P
+@ALIGN LEFT
+
+
+
+
+
+
+
+
+
+
+
+
+
+         The Hercules S/370, ESA/390 and z/Architecture Emulator
+                          SDL 4.x Hyperion
+       Copyright (C) 1999-2023 Roger Bowler, Jan Jaeger, and others

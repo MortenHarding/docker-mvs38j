@@ -22,5 +22,7 @@ RUN chmod +x mvs-tk5.zip \
 && unzip herc4x.zip -d /app/mvs/hercules/linux/ \
 && mv /app/mvs/hercules/linux/herc4x /app/mvs/hercules/linux/64 \
 && rm herc4x.zip \
+&& rm herclogo.txt \
 && chmod -R +x /app/*
+COPY herclogo.txt /app/mvs/herclogo.txt
 ENTRYPOINT ["/bin/bash","./mvs_docker"]

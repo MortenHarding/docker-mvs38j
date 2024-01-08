@@ -24,4 +24,5 @@ RUN curl -k -O http://www.vm370.org/sites/default/files/2022-07/VM370CE.V1.R1.2.
 && chmod -R +x /app/mvs/*
 ENV PATH="/app/hercules/herc4x/bin:/app/mvs/VM370CE:$PATH"
 WORKDIR /app/mvs/VM370CE
+COPY herclogo.txt /app/mvs/VM370CE/herclogo.txt
 ENTRYPOINT ["/bin/bash","./vm370ce.sh"]

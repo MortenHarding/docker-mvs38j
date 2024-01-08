@@ -4,7 +4,10 @@ USER root
 
 # Setup MVS
 WORKDIR /
-COPY herc4x.zip mvs.sh tn3270 /
+COPY herc4x.zip \
+	mvs.sh \
+	tn3270 \
+	/
 RUN apt-get update && apt-get -yq install --no-install-recommends c3270 unzip \
 && apt-get clean \
 && chmod +x /mvs.sh \
@@ -12,8 +15,10 @@ RUN apt-get update && apt-get -yq install --no-install-recommends c3270 unzip \
 && mkdir -p /app/hercules \
 && unzip herc4x.zip -d /app/hercules/ \
 && rm herc4x.zip \
+&& rm /MVSCE/herclogo.txt \
 && rm -rf /home/hercules/herctest/herc4x \
 && /app/hercules/herc4x/hyperion-init-bash.sh \
 && chmod -R +x /app/hercules/*
 ENV PATH="/app/hercules/herc4x/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+COPY herclogo.txt /MVSCE/herclogo.txt
 ENTRYPOINT ["/bin/bash","./mvs.sh"]
