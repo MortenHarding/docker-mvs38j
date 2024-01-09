@@ -1,2 +1,2 @@
 #!/bin/bash
-c3270 localhost:3270
+c3270 ${1-localhost}:3270
