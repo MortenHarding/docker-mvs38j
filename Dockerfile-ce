@@ -8,7 +8,7 @@ COPY herc4x.zip \
 	mvs.sh \
 	tn3270 \
 	/
-RUN apt-get update && apt-get -yq install --no-install-recommends c3270 unzip \
+RUN apt-get update && apt-get -yq install --no-install-recommends tmux c3270 unzip \
 && apt-get clean \
 && chmod +x /mvs.sh \
 && chmod +x /tn3270 \

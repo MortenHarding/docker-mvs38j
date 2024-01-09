@@ -6,11 +6,6 @@ Hercules Version  :
 $(VERSION)
 @NL
 @SF P
-Host name         :
-@SF HP
-$(HOSTNAME)
-@NL
-@SF P
 Host OS           :
 @SF HP
 $(HOSTOS)-$(HOSTOSREL) $(HOSTOSVER)
@@ -41,19 +36,26 @@ Subchannel        :
 $(SUBCHAN)
 @SF P
 @ALIGN LEFT
-           Containers created by Morten Harding
-                         |Hercules|
-                      |c3270| |VM370|
-                    |TK4| |TK5| |MVS/CE|   
-               /\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\\\___/ ===
+@NL
+@ALIGN CENTER
+@SF P
+Containers created by 
+@SF HP
+Morten Harding
+@SF P
+@ALIGN LEFT
+                    |MVS/CE|          .
+                 |TK4|TK5|VM370|     ==
+                |Hercules|c3270|    ===
+               /""""""""""""""""\___/ ===
           ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
-               \\\______ @          __/
-                 \\\    \\\        __/            
-                  \\\____\\\______/               
+               \______ @          __/
+                 \    \        __/            
+                  \____\______/               
 
-               __ |  __   __ | _  __   _          \n"
-              /  \\\| /  \\\ /   |/  / _\\\ |     \n"
-              \\\__/| \\\__/ \\\__ |\\\_ \\\__  | \n"
+               __ |  __   __ | _  __   _          
+              /  \| /  \ /   |/  / _\ |     
+              \__/| \__/ \__ |\_ \__  | 
 
 The Hercules S/370, ESA/390 and z/Architecture Emulator SDL 4.x Hyperion
        Copyright (C) 1999-2023 Roger Bowler, Jan Jaeger, and others
