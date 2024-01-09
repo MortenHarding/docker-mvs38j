@@ -41,19 +41,19 @@ Subchannel        :
 $(SUBCHAN)
 @SF P
 @ALIGN LEFT
+           Containers created by Morten Harding
+                         |Hercules|
+                      |c3270| |VM370|
+                    |TK4| |TK5| |MVS/CE|   
+               /\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\\\___/ ===
+          ~~~ {~~ ~~~~ ~~~ ~~~~ ~~ ~ /  ===- ~~~
+               \\\______ @          __/
+                 \\\    \\\        __/            
+                  \\\____\\\______/               
 
+               __ |  __   __ | _  __   _          \n"
+              /  \\\| /  \\\ /   |/  / _\\\ |     \n"
+              \\\__/| \\\__/ \\\__ |\\\_ \\\__  | \n"
 
-
-
-
-
-
-
-
-
-
-
-
-         The Hercules S/370, ESA/390 and z/Architecture Emulator
-                          SDL 4.x Hyperion
+The Hercules S/370, ESA/390 and z/Architecture Emulator SDL 4.x Hyperion
        Copyright (C) 1999-2023 Roger Bowler, Jan Jaeger, and others
