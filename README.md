@@ -2,8 +2,8 @@
 
 - [MVS TurnKey installations](#MVS-TurnKey-installations)
 - [This Repo - MVS and c3270 emulator in one container](#This-Repo-MVS-and-c3270-emulator-in-one-container)
- - [The benefit of these containers](#The-benefit-of-these-containers)
- - [Prerequisites](#Prerequisites)
+  - [The benefit of these containers](#The-benefit-of-these-containers)
+  - [Prerequisites](#Prerequisites)
 - [Quick start procedure](#Quick-start-procedure)
 - [Detailed procedures for starting and using the containers](#Detailed-procedures-for-starting-and-using-the-containers)
 - [References](#References)
@@ -88,7 +88,7 @@ docker run -it --name myMVS -p 3270:3270/tcp mhardingdk/mvs:tk4
 Example of running a single MVS Container and c3270 emulator, started as described above
 ![mvs-c3270](assets/mvs-c3270.jpg)
 
-## References
+# References
 
 For usernames and passwords please refer to the specific TurnKey installation
 documentation that is linked below.
