@@ -1,4 +1,4 @@
-##_MVS TurnKey installations_
+## MVS TurnKey installations
 
 The Docker Containers in this repo contain MVS installations, created and build by 
 briliant gentlemen in the mainframe world. Without these MVS TurnKey installations, 
@@ -7,10 +7,16 @@ All credit for the MVS TurnKey installations goes to these briliant MVS experts.
 
 	Thank you for all your work and contributions.
 
-##_MVS 3.8j and c3270 emulator in one container_
+For a list of the Turnkey installations and links, please go the reference sections
+at the end of this page.
+
+
+## This Repo - MVS and c3270 emulator in one container
 
 The containers in this repo, contain the MVS TurnKey installations, plus 
-additional software including the latest release of Hercules/Hyperion and c3270. 
+additional software including the latest release of Hercules/Hyperion and c3270,
+making it possible to connect using 3270 to the MVS TurnKey installations without
+requirering anything but Docker. 
 
 ## The benefit of these containers 
 
