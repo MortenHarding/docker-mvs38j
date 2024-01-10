@@ -110,8 +110,6 @@ For example if you'd like to start MVS TK4 use:
 docker run -it --name myMVS -p 3270:3270/tcp mhardingdk/mvs:tk4
 ```
 
-![TK4 logon](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/tk4-logon.jpeg?raw=true)
-
 The following example shows a single MVS Container and c3270 emulator, started as described above
 ![mvs-c3270](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/mvs-c3270.jpeg?raw=true)
 
