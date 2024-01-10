@@ -4,8 +4,12 @@
 - [This Repo - MVS and c3270 emulator in one container](#This-Repo-MVS-and-c3270-emulator-in-one-container)
   - [The benefit of these containers](#The-benefit-of-these-containers)
   - [Prerequisites](#Prerequisites)
-- [Quick start procedure](#Quick-start-procedure)
+- [Quick start procedure](#Quick-start-procedure)t
+  - [Start all MVS TurnKey installations](#Start-all-MVS-TurnKey-installations)
+  - [Access the MVS Console](#Access-the-MVS-Console)
+  - [Connect to MVS in the container using the included c3270](#Connect-to-MVS-in-the-container-using-the-included-c3270)
 - [Detailed procedures for starting and using the containers](#Detailed-procedures-for-starting-and-using-the-containers)
+  - [Start a single container](#Start-a-single-container)
 - [References](#References)
 
 # MVS TurnKey installations
@@ -15,9 +19,9 @@ briliant gentlemen in the mainframe world. Without these MVS TurnKey installatio
 most of us would never get the pleasure of using MVS. 
 All credit for the MVS TurnKey installations goes to these briliant MVS experts.
 
-##	Thank you for all your work and contributions.
+Thank you for all your work and contributions.
 
-For a list of the Turnkey installations and links, please go the reference sections
+For a list of the Turnkey installations, please go the [References](#References) sections
 at the end of this page.
 
 
@@ -31,7 +35,7 @@ requirering anything but Docker.
 ## The benefit of these containers 
 
 Using this repo, you can start all MVS TurnKey installations using one command.
-Access the MVS console or login to MVS, using the Docker and c3270.
+Access the MVS console or login to MVS, using Docker and c3270.
 
 ## Prerequisites
 
@@ -39,7 +43,7 @@ Docker and Docker compose must be installed
 
 # Quick start procedure
 
-Start all MVS TurnKey installations using one command
+## Start all MVS TurnKey installations using one command
 
 ```sh
 docker compose up -d
@@ -50,16 +54,17 @@ repo, which includes VM370, TK4, TK5, TK5upd2, MVS/CE
 
 ![docker compose up -d](assets/docker-compose-up.jpeg)
  
-Access the MVS Console, e.g. for MVS/CE,  using:
+## Access the MVS Console, e.g. for MVS/CE,  using:
 
 ```sh
 docker attach ce
 ```
+In the command example "ce" is the name of the docker container.
 
 ![hercules console](assets/hercules-console.jpeg)
 
 
-Connect to MVS in the container using the included c3270 emulator
+## Connect to MVS in the container using the included c3270 emulator
 
 ```sh
 docker exec -it ce ./tn3270
@@ -69,7 +74,7 @@ docker exec -it ce ./tn3270
 
 # Detailed procedures for starting and using the containers
 
-To start a single container, instead of all containers, e.g. for  MVS/CE
+## Start a single container, instead of all containers, e.g. for  MVS/CE
 
 ```sh
 docker run -it --name myMVS -p 3270:3270/tcp mhardingdk/mvs
@@ -99,4 +104,5 @@ The following software is used in the containers in this repo.
 - [MVS Turn Key 5](https://www.prince-webdesign.nl/index.php/software/mvs-3-8j-turnkey-5) - by Rob Prins
 - [MVS Turn Key 4](https://wotho.pebble-beach.ch/tk4-) - by Juergen Winkelmann
 - [c3270](https://x3270.miraheze.org/wiki/C3270) - 3270 emulator for Linux
+- [docker-mvs](https://github.com/MortenHarding/docker-mvs38j) - Github repo with docker files for building these containers
 
