@@ -58,7 +58,7 @@ This will pull the container images from https://hub.docker.com/r/mhardingdk/mvs
 and start one container for each of the MVS TurnKey installations in this repo, 
 which includes VM370, TK4, TK5, TK5upd2, MVS/CE.
 
-![docker compose up -d](assets/docker-compose-up.jpeg)
+![docker compose up -d](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/docker-compose-up.jpeg?raw=true)
  
 ## Access the MVS Console
 
@@ -72,7 +72,7 @@ In the command example "ce" is the name of the docker container, the name
 can be changed to another container name to get access to the MVS console for
 any of the MVS TurnKey installations running in the containers.
 
-![hercules console](assets/hercules-console.jpeg)
+![hercules console](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/hercules-console.jpeg?raw=true)
 
 
 ## Connect to MVS in the container using the included c3270 emulator
@@ -87,7 +87,7 @@ In the command example "ce" is the name of the docker container, the name
 can be changed to another container name to start c3270 and connect to
 any of the MVS TurnKey installations running in the containers.
 
-![MVS/CE logon](assets/mvsce-logon.jpeg)
+![MVS/CE logon](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/mvsce-logon.jpeg?raw=true)
 
 
 ## Start a single container, instead of all containers
@@ -110,10 +110,10 @@ For example if you'd like to start MVS TK4 use:
 docker run -it --name myMVS -p 3270:3270/tcp mhardingdk/mvs:tk4
 ```
 
-![TK4 logon](assets/tk4-logon.jpeg)
+![TK4 logon](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/tk4-logon.jpeg?raw=true)
 
 The following example shows a single MVS Container and c3270 emulator, started as described above
-![mvs-c3270](assets/mvs-c3270.jpeg)
+![mvs-c3270](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/mvs-c3270.jpeg?raw=true)
 
 # References
 
