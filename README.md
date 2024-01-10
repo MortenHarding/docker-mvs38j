@@ -1,12 +1,14 @@
-#MVS Docker containers
--[MVS TurnKey installations](#MVS TurnKey installations)
--[This Repo - MVS and c3270 emulator in one container](#This Repo - MVS and c3270 emulator in one container)
- -[The benefit of these containers](#The benefit of these containers)
- -[Prerequisites](#Prerequisites)
--[Quick start procedure](#Quick start procedure)
--[Detailed procedures for starting and using the containers](#Detailed procedures for starting and using the containers)
+# MVS Docker containers
 
-#MVS TurnKey installations
+- [MVS TurnKey installations](#MVS-TurnKey-installations)
+- [This Repo - MVS and c3270 emulator in one container](#This-Repo-MVS-and-c3270-emulator-in-one-container)
+ - [The benefit of these containers](#The-benefit-of-these-containers)
+ - [Prerequisites](#Prerequisites)
+- [Quick start procedure](#Quick-start-procedure)
+- [Detailed procedures for starting and using the containers](#Detailed-procedures-for-starting-and-using-the-containers)
+- [References](#References)
+
+# MVS TurnKey installations
 
 The Docker Containers in this repo contain MVS installations, created and build by 
 briliant gentlemen in the mainframe world. Without these MVS TurnKey installations, 
@@ -36,11 +38,13 @@ Access the MVS console or login to MVS, using the Docker and c3270.
 Docker and Docker compose must be installed
 
 # Quick start procedure
+
 Start all MVS TurnKey installations using one command
 
 ```sh
 docker compose up -d
 ```
+
 This will start one container for each of the MVS TurnKey installations in this
 repo, which includes VM370, TK4, TK5, TK5upd2, MVS/CE
 
@@ -70,6 +74,7 @@ To start a single container, instead of all containers, e.g. for  MVS/CE
 ```sh
 docker run -it --name myMVS -p 3270:3270/tcp mhardingdk/mvs
 ```
+
 MVS/CE is currently tagged as latest
  
 If you want a different TurnKey installation, use the tags. E.g. for TK4 use
