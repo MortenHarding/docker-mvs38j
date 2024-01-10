@@ -126,5 +126,5 @@ The following software is used in the containers in this repo.
 - [MVS Turn Key 5](https://www.prince-webdesign.nl/index.php/software/mvs-3-8j-turnkey-5) - by Rob Prins
 - [MVS Turn Key 4](https://wotho.pebble-beach.ch/tk4-) - by Juergen Winkelmann
 - [c3270](https://x3270.miraheze.org/wiki/C3270) - 3270 emulator for Linux
-- [docker-mvs](https://github.com/MortenHarding/docker-mvs38j) - Github repo with docker files for building these containers
+- [docker-mvs38j](https://github.com/MortenHarding/docker-mvs38j) - Github repo with docker files for building these containers
 
