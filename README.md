@@ -113,7 +113,7 @@ docker run -it --name myMVS -p 3270:3270/tcp mhardingdk/mvs:tk4
 ![TK4 logon](assets/tk4-logon.jpeg)
 
 The following example shows a single MVS Container and c3270 emulator, started as described above
-![mvs-c3270](assets/mvs-c3270.jpg)
+![mvs-c3270](assets/mvs-c3270.jpeg)
 
 # References
 
