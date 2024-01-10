@@ -1,7 +1,7 @@
 # MVS Docker containers
 
 - [MVS TurnKey installations](#MVS-TurnKey-installations)
-- [This Repo - MVS and c3270 emulator in one container](#This-Repo-MVS-and-c3270-emulator-in-one-container)
+- [This Repo MVS and c3270 emulator in one container](#This-Repo-MVS-and-c3270-emulator-in-one-container)
   - [The benefit of these containers](#The-benefit-of-these-containers)
   - [Prerequisites](#Prerequisites)
 - [Quick start guide](#Quick-start-guide)
@@ -24,7 +24,7 @@ For a list of the Turnkey installations, please go to the [References](#Referenc
 at the end of this page.
 
 
-# This Repo - MVS and c3270 emulator in one container
+# This Repo MVS and c3270 emulator in one container
 
 The containers in this repo include the MVS TurnKey installations, plus 
 additional software, such as the latest release of Hercules/Hyperion and c3270,
@@ -45,7 +45,7 @@ access the MVS console or login to MVS, using Docker and c3270.
 
 Install Docker including Docker compose and download [docker-compose.yaml](https://github.com/MortenHarding/docker-mvs38j/blob/main/docker-compose.yaml).
 
-## Start all MVS TurnKey installations using one command
+## Start all MVS TurnKey installations
 
 Check that the docker-compose.yaml file is in the current directory, and run the following command.
 Or use the '-f' argument to point to the location of the docker-compose.yaml file:
@@ -75,7 +75,7 @@ any of the MVS TurnKey installations running in the containers.
 ![hercules console](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/hercules-console.jpeg?raw=true)
 
 
-## Connect to MVS in the container using the included c3270 emulator
+## Connect to MVS in the container using the included c3270
 
 ```sh
 docker exec -it ce ./tn3270
@@ -90,7 +90,7 @@ any of the MVS TurnKey installations running in the containers.
 ![MVS/CE logon](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/mvsce-logon.jpeg?raw=true)
 
 
-## Start a single container, instead of all containers
+## Start a single container
 
 If you prefer to only start a single MVS TurnKey installation, you can run
 this command.
