@@ -1,31 +1,74 @@
-## _MVS 3.8j and c3270 emulator in one container_
+##_MVS TurnKey installations_
 
-To start a container with MVS 3.8j using the latest image, containing MVS/CE
+The Docker Containers in this repo contain MVS installations, created and build by 
+briliant gentlemen in the mainframe world. Without these MVS TurnKey installations, 
+most of us would never get the pleasure of using MVS. 
+All credit for the MVS TurnKey installations goes to these briliant MVS experts.
+
+	Thank you for all your work and contributions.
+
+##_MVS 3.8j and c3270 emulator in one container_
+
+The containers in this repo, contain the MVS TurnKey installations, plus 
+additional software including the latest release of Hercules/Hyperion and c3270. 
+
+## The benefit of these containers 
+
+Using this repo, you can start all MVS TurnKey installations using one command.
+Access the MVS console or login to MVS, using the Docker and c3270.
+
+## Requirements
+
+Docker and Docker compose must be installed
+
+##_Quick start procedure_
+Start all MVS TurnKey installations using one command
+
+```sh
+docker compose up -d
+```
+This will start one container for each of the MVS TurnKey installations in this
+repo, which includes VM370, TK4, TK5, TK5upd2, MVS/CE
+ 
+Access the MVS Console, e.g. for TK4,  using:
+
+```sh
+docker attach tk4
+```
+
+Connect to MVS in the container using the included c3270 emulator
+
+```sh
+docker exec -it tk4 ./tn3270
+```
+
+##_Detailed procedures for starting and using the containers_
+
+To start a single container, instead of all containers, e.g. for  MVS/CE
 
 ```sh
 docker run -it --name myMVS -p 3270:3270/tcp mhardingdk/mvs
 ```
+MVS/CE is currently tagged as latest
+ 
+If you want a different TurnKey installation, use the tags. E.g. for TK4 use
 
-If you want image, use the tags. E.g. for TK4 use
 ```sh
 docker run -it --name myMVS -p 3270:3270/tcp mhardingdk/mvs:tk4
 ```
 
+Example of starting all MVS TurnKey installations using one command
 
-How to connect to MVS in the container using the included c3270 emulator
 
-```sh
-docker exec -it myMVS ./tn3270
-```
-
-Default username and password is 'herc01' and 'cul8tr'
-
-Example of a running MVS Container and c3270 emulator, started as described above
+Example of running a single MVS Container and c3270 emulator, started as described above
 ![mvs-c3270](assets/mvs-c3270.jpg)
 
 ## References
 
-The following software packages are used in the containers in this repo.
+For usernames and passwords please refer to the specific TurnKey installation
+documentation that is linked below.
+
+The following software is used in the containers in this repo.
 - [Hercules](https://hercules-390.github.io/html/) - Hercules System/370, ESA/390, and z/Architecture Emulator
 - [MVS/CE](https://hub.docker.com/r/mainframed767/mvsce) - MVS/CE Docker image
 - [MVS Turn Key 5](https://www.prince-webdesign.nl/index.php/software/mvs-3-8j-turnkey-5) - by Rob Prins

@@ -5,39 +5,39 @@ services:
     image: "mhardingdk/mvs:vm370"
     container_name: "vm370"
     ports:
-      - "3269:3270"
-      - "8889:8888"
+      - "3274:3270"
+      - "8884:8888"
     stdin_open: true
     tty: true
   tk4:
     image: "mhardingdk/mvs:tk4"
     container_name: "tk4"
     ports:
-      - "3270:3270"
-      - "8888:8888"
+      - "3273:3270"
+      - "8883:8888"
     stdin_open: true 
     tty: true
   tk5:
     image: "mhardingdk/mvs:tk5"
     container_name: "tk5"
     ports:
-      - "3271:3270"
-      - "8887:8888"
+      - "3272:3270"
+      - "8882:8888"
     stdin_open: true 
     tty: true
   tk5upd2:
     image: "mhardingdk/mvs:tk5upd2"
     container_name: "tk5upd2"
     ports:
-      - "3272:3270"
-      - "8886:8888"
+      - "3271:3270"
+      - "8881:8888"
     stdin_open: true 
     tty: true
   ce:
     image: "mhardingdk/mvs:ce"
     container_name: "ce"
     ports:
-      - "3273:3270"
-      - "8885:8888"
+      - "3270:3270"
+      - "8880:8888"
     stdin_open: true 
     tty: true
