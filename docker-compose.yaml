@@ -6,7 +6,7 @@ services:
     container_name: "vm370"
     ports:
       - "3274:3270"
-      - "8884:8888"
+      - "8884:8081"
     stdin_open: true
     tty: true
   tk4:
@@ -14,7 +14,7 @@ services:
     container_name: "tk4"
     ports:
       - "3273:3270"
-      - "8883:8888"
+      - "8883:8038"
     stdin_open: true 
     tty: true
   tk5:
@@ -22,7 +22,7 @@ services:
     container_name: "tk5"
     ports:
       - "3272:3270"
-      - "8882:8888"
+      - "8882:8038"
     stdin_open: true 
     tty: true
   tk5upd2:
@@ -30,14 +30,25 @@ services:
     container_name: "tk5upd2"
     ports:
       - "3271:3270"
-      - "8881:8888"
+      - "8881:8038"
     stdin_open: true 
     tty: true
   ce:
     image: "mhardingdk/mvs:ce"
     container_name: "ce"
     ports:
+      - "2120:21"
+      - "2320:23"
       - "3270:3270"
+      - "3505:3505"
+      - "3506:3506"
       - "8880:8888"
+    volumes:
+      - "./config:/config"
+      - "./printers:/printers"
+      - "./punchcards:/punchcards"
+      - "./logs:/logs"
+      - "./dasd:/dasd"
+      - "./certs:/certs"
     stdin_open: true 
     tty: true

@@ -12,11 +12,14 @@ EXPOSE 3270 8080 3221 3223 3505 3506 8888
 COPY 	mvs_docker \
 	tn3270 \
 	herc4x.zip \
+	vm370ce.docker \
 	/app/mvs/
 RUN curl -k -O http://www.vm370.org/sites/default/files/2022-07/VM370CE.V1.R1.2.zip \
 && unzip VM370CE.V1.R1.2.zip -d /app/mvs \
 && rm VM370CE.V1.R1.2.zip \
 && mv /app/mvs/VM370CE.V1.R1.2 /app/mvs/VM370CE \
+&& rm /app/mvs/VM370CE/vm370ce.conf \
+&& mv /app/mvs/vm370ce.docker /app/mvs/VM370CE/vm370ce.conf \
 && unzip herc4x.zip -d /app/hercules/ \
 && /app/hercules/herc4x/hyperion-init-bash.sh \
 && rm herc4x.zip \
