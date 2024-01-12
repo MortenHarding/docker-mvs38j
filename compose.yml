@@ -44,11 +44,11 @@ services:
       - "3506:3506"
       - "8880:8888"
     volumes:
-      - "./config:/config"
-      - "./printers:/printers"
-      - "./punchcards:/punchcards"
-      - "./logs:/logs"
-      - "./dasd:/dasd"
-      - "./certs:/certs"
+      - "./ce/config:/config"
+      - "./ce/printers:/printers"
+      - "./ce/punchcards:/punchcards"
+      - "./ce/logs:/logs"
+      - "./ce/dasd:/dasd"
+      - "./ce/certs:/certs"
     stdin_open: true 
     tty: true

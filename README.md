@@ -186,7 +186,7 @@ http://localhost:8880
 ### Usernames and passwords
 
 | Name       | Username  | Pwd      | Type                 |
-| ----------:|----------:| --------:|:---------------------|
+|:-----------|:----------| --------:|:---------------------|
 | **vm370**  |           |          | TSO                  |
 | **tk4**    | HERC01    | CUL8TR   | TSO                  |
 |            | HERC02    | CUL8TR   | TSO                  |
@@ -208,7 +208,7 @@ http://localhost:8880
 ### Container names
 
 | Container | 
-| ---------:|
+|:----------|
 | **vm370** |
 | **tk4**   |
 | **tk5**   |
@@ -218,7 +218,7 @@ http://localhost:8880
 ### Port mappings
 
 | Name/port | Container | Host  |                      |
-| ---------:|----------:| -----:|:---------------------|
+|:----------|----------:| -----:|:---------------------|
 | **vm370** | 3270      | 3274  | tn3270               |
 |           | 8081      | 8884  | Hercules http server |
 | **tk4**   | 3270      | 3273  | tn3270               |
@@ -239,14 +239,14 @@ http://localhost:8880
 
 The following volume mappings are only relevant for MVS/CE. These subdirectories will be created in the directory, where `docker compose up -d` is executed. If you do not want the folders created on your host, edit the `compose.yml` file and remove the section named `volumes:`.
 
-| Host         | Container  |
-| ------------:|-----------:|
-| ./config     | /config    |
-| ./printers   | /printers  |
-| ./punchcards | /punchcards|
-| ./logs       | /logs      |
-| ./dasd       | /dasd      |
-| ./certs      | /certs     |
+| Host            | Container  |
+| :---------------|:-----------|
+| ./ce/config     | /config    |
+| ./ce/printers   | /printers  |
+| ./ce/punchcards | /punchcards|
+| ./ce/logs       | /logs      |
+| ./ce/dasd       | /dasd      |
+| ./ce/certs      | /certs     |
 
 # References
 
