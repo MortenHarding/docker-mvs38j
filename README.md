@@ -17,7 +17,9 @@
   - [How to connect](#how-to-connect)
     - [Access MVS using tn3270](#access-mvs-using-tn3270)
     - [Access Hercules HTTP server](#access-hercules-http-server)
-  - [Container ports and mappings](#container-ports-and-mappings)  
+    - [Usernames and Passwords](#usernames-and-passwords)
+  - [Container ports and mappings](#container-ports-and-mappings)
+    - [Container names](#container-names)
     - [Port mapping](#port-mappings)
     - [Volume mapping](#volume-mapping)
 - [References](#References)
@@ -62,20 +64,21 @@ you can:
 
 ## Start all MVS TurnKey installations
 
-* Run the following command from the directory containing [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml).
+* Run the following command from the directory containing [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml). [(Note 1)](#note-1)
 
 ```sh
 docker compose up -d
 ```
-
-NOTE: Use the `-f` argument in the command to point to [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) file, if it isn't in the current directory.
 
 This will pull the container images from https://hub.docker.com/r/mhardingdk/mvs 
 and start one container for each of the MVS TurnKey installations in this repo, 
 which includes `VM370, TK4, TK5, TK5upd2, MVS/CE`.
 
 ![docker compose up -d](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/docker-compose-up.jpeg?raw=true)
- 
+
+#### Note 1 
+Use the `-f` argument in the command to point to [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) file, if it isn't in the current directory.
+
 ## Access the MVS Console
 
 * Run the following command to access the MVS console for MVS/CE.
@@ -115,16 +118,17 @@ any of the MVS TurnKey installations running in the containers.
 docker compose down
 ```
 
-This will stop and remove the containers.
+This will stop and remove the containers. [(Note 2)](#note-2)
 
-NOTE: The subdirectories created by [volume mapping](#volume-mapping) will not be removed.
+#### Note 2 
+The subdirectories created during `docker compose up` by [volume mapping](#volume-mapping) will not be removed.
 
 # Detailed description
 
 ## Start a single container
 
-To start a single container, or less then the included 5 containers, edit the downloaded [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) and remove any containers you do not want started, and run the command listed in [Start all MVS TurnKey installations](#Start-all-MVS-TurnKey-installations).
-Or use the commands described below, to start single containers using `docker`.
+To start a single container, or less than the included 5 containers, edit the downloaded [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) and remove any containers you do not want started, and run the command listed in [Start all MVS TurnKey installations](#Start-all-MVS-TurnKey-installations).
+Or use the commands described below, to start single containers using `docker run`.
 
 ### Start the default container MVS/CE
 
@@ -164,8 +168,8 @@ docker exec -it ce ./tn3270
 ```
 
 Access any of the MVS TurnKey installations that are started using your own tn3270
-emulator, by connecting to `localhost:port`, by changing the port number to the number
-listed in [Port mappings](#port-mappings), column | host | tn3270.
+emulator, by connecting to `localhost:port`. Change the port number to the number
+listed in [Port mappings](#port-mappings).
 
 ```sh
 ./tn3270 localhost:3270
@@ -173,11 +177,31 @@ listed in [Port mappings](#port-mappings), column | host | tn3270.
 
 ### Access Hercules HTTP server
 
-Access the Hercules HTTP server for any of the MVS TurnKey installations, using a web browser, by connecting to localhost:port, by changing the port number to the number listed in [Port mappings](#port-mappings) column |host| Hercules http server-
+Access the Hercules HTTP server for any of the MVS TurnKey installations, using a web browser, by connecting to localhost:port, by changing the port number to the number listed in [Port mappings](#port-mappings).
 
 ```sh
 http://localhost:8880
 ```
+
+### Usernames and passwords
+
+| Name       | Username  | Pwd      | Type                 |
+| ----------:|----------:| --------:|:---------------------|
+| **vm370**  |           |          | TSO                  |
+| **tk4**    | HERC01    | CUL8TR   | TSO                  |
+|            | HERC02    | CUL8TR   | TSO                  |
+|            | HERC03    | PASS4U   | TSO                  |
+|            | HERC04    | PASS4U   | TSO                  |
+|            | IBMUSER   | IBMPASS  | TSO                  |
+|**tk5/upd2**| HERC01    | CUL8TR   | TSO                  |
+|            | HERC02    | CUL8TR   | TSO                  |
+|            | HERC03    | PASS4U   | TSO                  |
+|            | HERC04    | PASS4U   | TSO                  |
+|  **ce**    | IBMUSER   | SYS1     | TSO                  |
+|            | MVSCE01   | CUL8TR   | TSO                  |
+|            | MVSCE02   | PASS4U   | TSO                  |
+|            | HERCULES  | HERCULES | Hercules http server |
+
 
 ## Container ports and mappings
 
@@ -226,14 +250,14 @@ The following volume mappings are only relevant for MVS/CE. These subdirectories
 
 # References
 
-For usernames and passwords please refer to the specific TurnKey installation
-documentation that is linked below.
+For detailed documentation please refer to the specific TurnKey installation documentation linked below.
 
 The following software is used in the containers in this repo.
 - [Hercules](https://hercules-390.github.io/html/) - Hercules System/370, ESA/390, and z/Architecture Emulator
 - [MVS/CE](https://hub.docker.com/r/mainframed767/mvsce) - MVS/CE Docker image - By mainframed767
 - [MVS Turn Key 5](https://www.prince-webdesign.nl/index.php/software/mvs-3-8j-turnkey-5) - by Rob Prins
 - [MVS Turn Key 4](https://wotho.pebble-beach.ch/tk4-) - by Juergen Winkelmann
+- [VM370](http://www.vm370.org) - VM/370 Community Edition
 - [c3270](https://x3270.miraheze.org/wiki/C3270) - 3270 emulator for Linux
 - [docker-mvs38j](https://github.com/MortenHarding/docker-mvs38j) - Github repo with docker files for building these containers
 
