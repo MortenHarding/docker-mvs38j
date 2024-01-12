@@ -9,6 +9,7 @@
   - [Start all MVS TurnKey installations](#Start-all-MVS-TurnKey-installations)
   - [Access the MVS Console](#Access-the-MVS-Console)
   - [Connect to MVS in the container using the included c3270](#Connect-to-MVS-in-the-container-using-the-included-c3270)
+  - [Stop all MVS TurnKey installations](#stop-all-mvs-turnkey-installations)
 - [Detailed description](#detailed-description)
   - [Start a single container](#Start-a-single-container)
     - [Start the default container MVS/CE](#start-the-default-container-mvsce)
@@ -24,7 +25,7 @@
 # MVS TurnKey installations
 
 The Docker Containers in this repo contain MVS installations, created and built by 
-briliant gentlemen in the mainframe world. Without these MVS TurnKey installations, 
+briliant gentlemen in the mainframe community. Without these MVS TurnKey installations, 
 most of us would never get the pleasure of using MVS. 
 All credit for the MVS TurnKey installations goes to these briliant MVS experts.
 
@@ -36,37 +37,38 @@ at the end of this page.
 
 # This Repo
 
-The containers that can be provisioned using the code in this repo include the MVS TurnKey installations, 
-plus additional software, such as the latest release of Hercules/Hyperion and c3270,
-making it possible to start one or more MVS TurnKey installations and connect using 3270 without
+The containers that can be provisioned using the code in this repo include the [MVS TurnKey installations](#References), plus additional software, such as the latest release of [Hercules](https://hercules-390.github.io/html/) and [c3270](https://x3270.miraheze.org/wiki/C3270), making it possible to start one or more MVS TurnKey installations and connect using tn3270 without
 requirering anything but Docker.
 
 ## The benefit of this Repo 
 
 Using Docker compose and the [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) file from this repo, 
-you can start all MVS TurnKey installations using one command and
-access the MVS console or login to MVS, using Docker and c3270.
+you can:
+ * Start all MVS TurnKey installations using one command
+ * Access the MVS console 
+ * Login to MVS using the included [c3270](https://x3270.miraheze.org/wiki/C3270) emulator.
 
 ## Prerequisites
 
-[Docker and Docker compose](https://www.docker.com/get-started) must be installed
+* [Docker and Docker compose](https://www.docker.com/get-started)
+* [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) this is the only file required from [docker-mvs38j](https://github.com/MortenHarding/docker-mvs38j)
 
 # Quick start guide
 
 ## Install the prerequisites
 
-* Install Docker including Docker compose. 
-* download [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) into an empty directory.
+* Install [Docker and Docker compose](https://www.docker.com/get-started). 
+* Download [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) into an empty directory.
 
 ## Start all MVS TurnKey installations
 
-* Run the following command.
+* Run the following command from the directory containing [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml).
 
 ```sh
 docker compose up -d
 ```
 
-NOTE: Use the `-f` argument in the command to point to compose.yml file, if it isn't in the current directory.
+NOTE: Use the `-f` argument in the command to point to [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) file, if it isn't in the current directory.
 
 This will pull the container images from https://hub.docker.com/r/mhardingdk/mvs 
 and start one container for each of the MVS TurnKey installations in this repo, 
@@ -76,7 +78,7 @@ which includes `VM370, TK4, TK5, TK5upd2, MVS/CE`.
  
 ## Access the MVS Console
 
-Using the following command the MVS console for MVS/CE is opened.
+* Run the following command to access the MVS console for MVS/CE.
 
 ```sh
 docker attach ce
@@ -91,6 +93,8 @@ any of the MVS TurnKey installations running in the containers.
 
 ## Connect to MVS in the container using the included c3270
 
+* Run the following command to access MVS using the included c3270 emulator. 
+
 ```sh
 docker exec -it ce ./tn3270
 ```
@@ -103,9 +107,24 @@ any of the MVS TurnKey installations running in the containers.
 
 ![MVS/CE logon](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/mvsce-logon.jpeg?raw=true)
 
+## Stop all MVS TurnKey installations
+
+* Run the following command.
+
+```sh
+docker compose down
+```
+
+This will stop and remove the containers.
+
+NOTE: The subdirectories created by [volume mapping](#volume-mapping) will not be removed.
+
 # Detailed description
 
 ## Start a single container
+
+To start a single container, or less then the included 5 containers, edit the downloaded [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) and remove any containers you do not want started, and run the command listed in [Start all MVS TurnKey installations](#Start-all-MVS-TurnKey-installations).
+Or use the commands described below, to start single containers using `docker`.
 
 ### Start the default container MVS/CE
 
@@ -113,7 +132,7 @@ If you prefer to only start a single MVS TurnKey installation, you can run
 this command.
 
 ```sh
-docker run -it --name myMVS -p 3270:3270/tcp mhardingdk/mvs
+docker run -it --name ce -p 3270:3270/tcp mhardingdk/mvs
 ```
 
 MVS/CE is currently tagged as `latest`, hence it is not necessary
@@ -125,7 +144,7 @@ If you want a different TurnKey installation, use any of the other container tag
 For example if you'd like to start MVS TK4 use:
 
 ```sh
-docker run -it --name myMVS -p 3270:3270/tcp mhardingdk/mvs:tk4
+docker run -it --name tk4 -p 3270:3270/tcp mhardingdk/mvs:tk4
 ```
 
 The following example shows a single MVS Container and c3270 emulator, started as described above.
@@ -162,7 +181,7 @@ http://localhost:8880
 
 ## Container ports and mappings
 
-### Container naming
+### Container names
 
 | Container | 
 | ---------:|
@@ -193,6 +212,17 @@ http://localhost:8880
 
 
 ## Volume mapping
+
+The following volume mappings are only relevant for MVS/CE. These subdirectories will be created in the directory, where `docker compose up -d` is executed. If you do not want the folders created on your host, edit the `compose.yml` file and remove the section named `volumes:`.
+
+| Host         | Container  |
+| ------------:|-----------:|
+| ./config     | /config    |
+| ./printers   | /printers  |
+| ./punchcards | /punchcards|
+| ./logs       | /logs      |
+| ./dasd       | /dasd      |
+| ./certs      | /certs     |
 
 # References
 
