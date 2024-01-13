@@ -1,0 +1,240 @@
+###############################################################################
+# Hercules configuration file for the VM/370 "Community Edition" system.      #
+#                                                                             #
+# Important!  This file assumes the directories are set up thusly:            #
+#    SixPack                 ...command and configuration files               #
+#       |                                                                     #
+#       +--3270              ...3270 emulator                                 #
+#       |                                                                     #
+#       +--disks             ...VM disk files                                 #
+#       |    +                                                                #
+#       |    |                                                                #
+#       |    +--shadows      ...VM shadow disk files                          #
+#       +--io                ...unit record I/O, tape files                   #
+#                                                                             #
+###############################################################################
+
+# These Hercules configuration parameters are documented in the Hercules User
+# Reference manual.
+ARCHMODE        S/370
+CNSLPORT        3270
+CODEPAGE        819/1047
+#               ^   ^
+#               |   |
+# ASCII --------+   +----- EBCDIC
+CPUMODEL        4381
+CPUSERIAL       098052
+DEVTMAX         0
+DIAG8CMD        DISABLE
+
+ECPSVM          YES
+# Certain assists need to be disabled on Hercule Hyperion
+# release earlier than 4.4.0.xxxxx, which fixes the assist issue.
+
+# Add the statement below, if a pre-4.4.0.xxxxx version of Hyperion
+# is being used, without the fix for HERCULES ECPSVM issue #382 (closed).
+# ECPSVM        DISABLE DISP1 DISP2
+
+# ============================================================================
+# HTTP Configuration for Hercules V4.x
+# ============================================================================
+# ----------------------------------------------------------------------------
+# Identify the port to find the the Operator Console.
+# Ensure you have allowed access to this port via iptables, or firewalld.
+# Default is 8081.
+# ----------------------------------------------------------------------------
+HTTP PORT ${HTTPPORT:=8081}
+# ----------------------------------------------------------------------------
+# This is the directory which contains the HTML pages of documentation.
+# ----------------------------------------------------------------------------
+#HTTP ROOT /usr/local/share/hercules/
+# ----------------------------------------------------------------------------
+# Start the web server, you should now be able to connect to http://host:8081
+# or whatever port you defined above.
+# ----------------------------------------------------------------------------
+HTTP START
+# ============================================================================   
+
+
+# Load support for TCPIP instruction.
+#LDMOD          DYNINST DYN75
+
+MAINSIZE        16
+NUMCPU          1
+OSTAILOR        QUIET
+
+PANTITLE        "VM370CE 1.1.2"
+# PANRATE and PANTITLE are deprecated in Hercules Hyperion.
+
+PGMPRDOS        RESTRICTED
+XPNDSIZE        0
+
+# Next we define the devices attached to our system.
+#
+# +-----------------------Device number
+# |     +-----------------Device type
+# |     |       +---------File name and parameters
+# |     |       |
+# V     V       V
+#---    ----    --------------------
+
+# Card Reader   the file "card.txt" in the IO directory will be read.
+000C    3505    io/card.txt ascii eof trunc
+
+# Card Punch    anything you punch will be written to "punch.txt" in the IO
+#               directory.
+000D    3525    io/punch.txt ascii
+
+# Printers      anything you print will be written to "print1.listing" or
+#               "print2.listing" in the IO directory.
+000E    1403    io/print1.listing
+000F    1403    io/print2.listing
+
+# You can access the operator's console through the Hercules window, or you
+# can launch a 3270 emulator and have the operator use it.  For the former,
+# ensure the next line is not commented.
+0009    3215-C  NOPROMPT
+# For the latter, comment the above line and un-comment this line:
+# 0010    3270  MOD4
+
+# Display Terminals... these are defined in DMKRIO as 3277s.
+00C0.32 3270
+01C8.7  3270    MOD2
+02C8.7  3270
+03C8.7  3270
+
+# Display Terminals... these are defined in DMKRIO as 3278-4s.
+01C0.7  3270    MOD4
+02C0.7  3270
+03C0.7  3270
+
+# Typewriter Terminals
+000A    1052    NOPROMPT
+
+# Tape Drives
+0480    3420    *
+0481    3420    *
+0580    3420    *
+0581    3420    *
+
+# XNET CTCA
+0500 CTCE 30882 127.0.0.1 30880
+
+# This disk is used by and replaced by the BREXX interpretor
+# and the VM specific GCC runtime library installation and service
+# procedure. It intentionally does not have a shadow.
+06A0    3350    disks/gccbrx.cckd
+
+
+# These disks are provided by the VM/370 distribution
+06A1    3350    disks/vm50-1.cckd ro sf=disks/shadows/vm50-1_*.shadow
+06A2    3350    disks/vm50-2.cckd ro sf=disks/shadows/vm50-2_*.shadow
+06A3    3350    disks/vm50-3.cckd ro sf=disks/shadows/vm50-3_*.shadow
+06A4    3350    disks/vm50-4.cckd ro sf=disks/shadows/vm50-4_*.shadow
+06A5    3350    disks/vm50-5.cckd ro sf=disks/shadows/vm50-5_*.shadow
+06A6    3350    disks/vm50-6.cckd ro sf=disks/shadows/vm50-6_*.shadow
+06A7    3350    disks/vm50-7.cckd ro sf=disks/shadows/vm50-7_*.shadow
+06A8    3350    disks/vm50-8.cckd ro sf=disks/shadows/vm50-8_*.shadow
+
+
+# Here are the disk drives used by the KICKS application.
+06AC    3350    disks/kicks0.cckd ro sf=disks/shadows/kicks0_*.shadow
+06AD    3350    disks/vsamin.cckd ro sf=disks/shadows/vsamin_*.shadow
+
+# These two packs are for CMS/DOS.  I have not tested CMS/DOS!
+# Un-comment them if you use them.
+#06ae    3350    disks/sysres.cckd ro sf=disks/shadows/sysres_*.shadow
+#06af    3350    disks/mcat01.cckd ro sf=disks/shadows/mcat01_*.shadow
+
+
+# This volume contains all mindisks for the CMSUSER userid.
+# It could be moved from one VM/370 distribution to a newer one.
+06B0    3350    disks/vm50u0.cckd ro sf=disks/shadows/vm50u0_*.shadow
+
+# This volume is shipped with no minidisks.
+# Use it for any minidisks you want to add.
+# It could be moved from one VM/370 distribution to a newer one.
+06B1    3350    disks/vm50u1.cckd ro sf=disks/shadows/vm50u1_*.shadow
+
+
+#########################################################################
+# Here are the disk drives used by the CMS version from CP/67.
+# Read the readme-CMS67.txt file before using.
+06d0    2314    disks/vm14-0.cckd ro sf=disks/shadows/vm14-0_*.shadow
+06d1    2314    disks/vm14-1.cckd ro sf=disks/shadows/vm14-1_*.shadow
+06d2    2314    disks/vm14-2.cckd ro sf=disks/shadows/vm14-2_*.shadow
+06d3    2314    disks/vm14-3.cckd ro sf=disks/shadows/vm14-3_*.shadow
+
+
+#########################################################################
+# Dedicated DOS/VS devices for George Shedlock's 5-pack DOSVS system as
+# a guest operating system.
+# Download the DASDs from: http://dosvs.31bitsnet/DOSVS_5Pack_V1.0-full.zip
+# Create a directory named "dosvs" within the current VM370CE installation
+# directory and unzip the downloaded DOS/VS file into the "dosvs" directory
+# Un-comment these lines if you want to use it.
+# Note that the actual disk packs are not included with this distribution!
+
+0360 3350 dosvs/DOSR34.3350.CCKD
+0361 3350 dosvs/PWRR34.3350.CCKD
+0362 3350 dosvs/WORK01.3350.CCKD
+0363 3350 dosvs/VSAM01.3350.CCKD
+0364 3350 dosvs/OPTLB1.3350.cckd
+
+########################################################################
+# Dedicated MVS devices for running TK4- MVS as a guest operating system.
+# Download TK4- from http://wotho.ethz.ch/tk4-/tk4-_v1.00_current.zip
+# Create a directory named "mvs" within the current VM370CE installation
+# directory and unzip the downloaded TK4- file into the "mvs" directory
+# Un-comment these lines if you want to use it.
+# Note that the actual disk packs are not included with this distribution!
+
+#030e    1403    mvs/log/hardcopy.log
+#
+#0131    2314    mvs/dasd/sort01.131
+#0132    2314    mvs/dasd/sort02.132
+#0133    2314    mvs/dasd/sort03.133
+#0134    2314    mvs/dasd/sort04.134
+#0135    2314    mvs/dasd/sort05.135
+#0136    2314    mvs/dasd/sort06.136
+#
+#0140    3350    mvs/dasd/work00.140
+#0148    3350    mvs/dasd/mvsres.148
+#0149    3350    mvs/dasd/smp001.149
+#014a    3350    mvs/dasd/smp002.14a
+#014b    3350    mvs/dasd/smp003.14b
+#014c    3350    mvs/dasd/smp004.14c
+#
+#0152    3330    mvs/dasd/hasp00.152
+#
+#0160    3340    mvs/dasd/page00.160
+#0161    3340    mvs/dasd/page01.161
+#
+#0170    3375    mvs/dasd/work01.170
+#
+#0180    3380    mvs/dasd/work02.180
+#
+#0190    3390    mvs/dasd/work03.190
+#0191    3390    mvs/dasd/mvscat.191
+#
+#0240    3350    mvs/dasd/pub000.240
+#0241    3350    mvs/dasd/pub010.241
+#0248    3350    mvs/dasd/mvsdlb.248
+#
+#0270    3375    mvs/dasd/pub001.270
+#0271    3375    mvs/dasd/pub011.271
+#
+#0280    3380    mvs/dasd/pub002.280
+#0281    3380    mvs/dasd/pub012.281
+#
+#0290    3390    mvs/dasd/pub003.290
+#0291    3390    mvs/dasd/pub013.291
+#
+#0340    3350    mvs/dasd/cbt000.340
+#0341    3350    mvs/dasd/cbt001.341
+#0342    3350    mvs/dasd/cbt002.342
+#0343    3350    mvs/dasd/cbtcat.343
+#0348    3350    mvs/dasd/src000.348
+#0349    3350    mvs/dasd/src001.349
+#034a    3350    mvs/dasd/src002.34a
+#034b    3350    mvs/dasd/srccat.34b

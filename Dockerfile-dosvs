@@ -1,6 +1,6 @@
 # Using Debian as a base
 FROM debian:stable-slim
-RUN apt-get update && apt-get install -y locales curl unzip c3270 netbase \
+RUN apt-get update && apt-get install -y locales curl tmux unzip c3270 netbase \
 && rm -rf /var/lib/apt/lists/* \
 && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
 && mkdir -p /app/mvs
@@ -12,16 +12,24 @@ EXPOSE 3270 8080 3221 3223 3505 3506 8888
 COPY 	mvs_docker \
 	tn3270 \
 	herc4x.zip \
+	vm370ce.dosvs \
 	/app/mvs/
-RUN curl -k -O http://www.vm370.org/sites/default/files/2022-07/DOSVS_5Pack_V1.0-full.zip \
-&& unzip DOSVS_5Pack_V1.0-full.zip -d /app/mvs \
-&& rm DOSVS_5Pack_V1.0-full.zip \
-&& mv /app/mvs/DOSVS_5Pack_V1.0-full /app/mvs/DOSVS \
+RUN curl -k -O http://www.vm370.org/sites/default/files/2022-07/VM370CE.V1.R1.2.zip \
+&& unzip VM370CE.V1.R1.2.zip -d /app/mvs \
+&& rm VM370CE.V1.R1.2.zip \
+&& mv /app/mvs/VM370CE.V1.R1.2 /app/mvs/VM370CE \
+&& rm /app/mvs/VM370CE/vm370ce.conf \
+&& mv /app/mvs/vm370ce.dosvs /app/mvs/VM370CE/vm370ce.conf \
 && unzip herc4x.zip -d /app/hercules/ \
 && /app/hercules/herc4x/hyperion-init-bash.sh \
 && rm herc4x.zip \
-&& cp /app/mvs/tn3270 /app/mvs/DOSVS/tn3270 \
+&& cp /app/mvs/tn3270 /app/mvs/VM370CE/tn3270 \
 && chmod -R +x /app/mvs/*
-ENV PATH="/app/hercules/herc4x/bin:/app/mvs/DOSVS:$PATH"
-WORKDIR /app/mvs/DOSVS
+RUN curl -k -O http://www.vm370.org/sites/default/files/2022-07/DOSVS_5Pack_V1.0-full.zip \
+&& unzip DOSVS_5Pack_V1.0-full.zip -d /app/mvs \
+&& rm DOSVS_5Pack_V1.0-full.zip \
+&& mv /app/mvs/DOSVS_5Pack_V1.0-full/* /app/mvs/VM370CE/dosvs/
+ENV PATH="/app/hercules/herc4x/bin:/app/mvs/VM370CE:$PATH"
+WORKDIR /app/mvs/VM370CE
+COPY herclogo.txt /app/mvs/VM370CE/herclogo.txt
 ENTRYPOINT ["/bin/bash"]

@@ -71,13 +71,14 @@ docker compose up -d
 ```
 
 This will pull the container images from https://hub.docker.com/r/mhardingdk/mvs 
-and start one container for each of the MVS TurnKey installations in this repo, 
+and start a container for each of the MVS TurnKey installations in this repo, 
 which includes `VM370, TK4, TK5, TK5upd2, MVS/CE`.
 
 ![docker compose up -d](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/docker-compose-up.jpeg?raw=true)
 
 #### Note 1 
-Use the `-f` argument in the command to point to [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) file, if it isn't in the current directory.
+Use the `-f` argument, to point to [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) file, if it isn't in the current directory. 
+E.g. if compose.yml is in your home directory `docker compose -f ~/compose.yml up -d`
 
 ## Access the MVS Console
 
@@ -139,19 +140,18 @@ this command.
 docker run -it --name ce -p 3270:3270/tcp mhardingdk/mvs
 ```
 
-MVS/CE is currently tagged as `latest`, hence it is not necessary
-to use the tag "ce" since it's the default.
+MVS/CE is currently tagged as `latest`, hence it is not necessary to use the tag "ce".
 
 ### Start a non default container
 
 If you want a different TurnKey installation, use any of the other container tags.
-For example if you'd like to start MVS TK4 use:
+For example if you'd like to start MVS TK5upd2 use:
 
 ```sh
-docker run -it --name tk4 -p 3270:3270/tcp mhardingdk/mvs:tk4
+docker run -it --name tk5upd2 -p 3270:3270/tcp mhardingdk/mvs:tk5upd2
 ```
 
-The following example shows a single MVS Container and c3270 emulator, started as described above.
+The following example shows a single MVS Container tk5upd2 and c3270 emulator, started as described above.
 
 ![mvs-c3270](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/mvs-c3270.jpeg?raw=true)
 
@@ -172,7 +172,7 @@ emulator, by connecting to `localhost:port`. Change the port number to the numbe
 listed in [Port mappings](#port-mappings).
 
 ```sh
-./tn3270 localhost:3270
+./your-own-tn3270-emulator localhost:3270
 ```
 
 ### Access Hercules HTTP server
@@ -187,7 +187,8 @@ http://localhost:8880
 
 | Name       | Username  | Pwd      | Type                 |
 |:-----------|:----------| --------:|:---------------------|
-| **vm370**  |           |          | TSO                  |
+| **dosvs**  |           |          |                      |
+| **vm370**  | CMSUSER   | CMSUSER  | TSO                  |
 | **tk4**    | HERC01    | CUL8TR   | TSO                  |
 |            | HERC02    | CUL8TR   | TSO                  |
 |            | HERC03    | PASS4U   | TSO                  |
@@ -209,6 +210,7 @@ http://localhost:8880
 
 | Container | 
 |:----------|
+| **dosvs** |
 | **vm370** |
 | **tk4**   |
 | **tk5**   |
@@ -219,6 +221,8 @@ http://localhost:8880
 
 | Name/port | Container | Host  |                      |
 |:----------|----------:| -----:|:---------------------|
+| **dosvs** | 3270      | 3275  | tn3270               |
+|           | 8081      | 8885  | Hercules http server |
 | **vm370** | 3270      | 3274  | tn3270               |
 |           | 8081      | 8884  | Hercules http server |
 | **tk4**   | 3270      | 3273  | tn3270               |
@@ -258,6 +262,7 @@ The following software is used in the containers in this repo.
 - [MVS Turn Key 5](https://www.prince-webdesign.nl/index.php/software/mvs-3-8j-turnkey-5) - by Rob Prins
 - [MVS Turn Key 4](https://wotho.pebble-beach.ch/tk4-) - by Juergen Winkelmann
 - [VM370](http://www.vm370.org) - VM/370 Community Edition
+- [dos/vs](http://www.vm370.org/dos) - DOS/VS 5pack release
 - [c3270](https://x3270.miraheze.org/wiki/C3270) - 3270 emulator for Linux
 - [docker-mvs38j](https://github.com/MortenHarding/docker-mvs38j) - Github repo with docker files for building these containers
 
