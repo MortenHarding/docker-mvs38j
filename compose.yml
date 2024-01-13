@@ -1,14 +1,6 @@
 # docker compose up --detach
 # docker compose down
 services:
-  dosvs:
-    image: "mhardingdk/mvs:dosvs"
-    container_name: "dosvs"
-    ports:
-      - "3275:3270"
-      - "8885:8081"
-    stdin_open: true
-    tty: true
   vm370:
     image: "mhardingdk/mvs:vm370"
     container_name: "vm370"

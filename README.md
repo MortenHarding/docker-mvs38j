@@ -187,7 +187,6 @@ http://localhost:8880
 
 | Name       | Username  | Pwd      | Type                 |
 |:-----------|:----------| --------:|:---------------------|
-| **dosvs**  |           |          |                      |
 | **vm370**  | CMSUSER   | CMSUSER  | TSO                  |
 | **tk4**    | HERC01    | CUL8TR   | TSO                  |
 |            | HERC02    | CUL8TR   | TSO                  |
@@ -210,7 +209,6 @@ http://localhost:8880
 
 | Container | 
 |:----------|
-| **dosvs** |
 | **vm370** |
 | **tk4**   |
 | **tk5**   |
@@ -221,8 +219,6 @@ http://localhost:8880
 
 | Name/port | Container | Host  |                      |
 |:----------|----------:| -----:|:---------------------|
-| **dosvs** | 3270      | 3275  | tn3270               |
-|           | 8081      | 8885  | Hercules http server |
 | **vm370** | 3270      | 3274  | tn3270               |
 |           | 8081      | 8884  | Hercules http server |
 | **tk4**   | 3270      | 3273  | tn3270               |
@@ -262,7 +258,7 @@ The following software is used in the containers in this repo.
 - [MVS Turn Key 5](https://www.prince-webdesign.nl/index.php/software/mvs-3-8j-turnkey-5) - by Rob Prins
 - [MVS Turn Key 4](https://wotho.pebble-beach.ch/tk4-) - by Juergen Winkelmann
 - [VM370](http://www.vm370.org) - VM/370 Community Edition
-- [dos/vs](http://www.vm370.org/dos) - DOS/VS 5pack release
+- [DOS/VS](http://www.vm370.org/dos) - DOS/VS 5pack release
 - [c3270](https://x3270.miraheze.org/wiki/C3270) - 3270 emulator for Linux
 - [docker-mvs38j](https://github.com/MortenHarding/docker-mvs38j) - Github repo with docker files for building these containers
 
