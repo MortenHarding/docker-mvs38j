@@ -97,7 +97,7 @@ any of the MVS TurnKey installations running in the containers.
 
 ## Connect to MVS in the container using the included c3270
 
-* Run the following command to access MVS using the included c3270 emulator. 
+* Run the following command to access MVS using the included c3270 emulator. [c3270 How to...](./VM370.md#c3270-basic-commands)
 
 ```sh
 docker exec -it ce ./tn3270
@@ -160,7 +160,8 @@ The following example shows a single MVS Container tk5upd2 and c3270 emulator, s
 ### Access MVS using tn3270
 
 Access any of the MVS TurnKey installations that are started, using
-the included c3270, with the following command.
+the included c3270, with the command below. [c3270 How to...](./VM370.md#c3270-basic-commands)
+
 Change the Container name `ce` to one of the names listed in [Container naming](#container-naming)
 
 ```sh
@@ -187,7 +188,7 @@ http://localhost:8880
 
 | Name       | Username  | Pwd      | Type                 |
 |:-----------|:----------| --------:|:---------------------|
-| **vm370**  | CMSUSER   | CMSUSER  | TSO                  |
+| **vm370**  | CMSUSER   | CMSUSER  | [How to...](./VM370.md#how-to-vm370-dosvs-and-c3270)            |
 | **tk4**    | HERC01    | CUL8TR   | TSO                  |
 |            | HERC02    | CUL8TR   | TSO                  |
 |            | HERC03    | PASS4U   | TSO                  |
