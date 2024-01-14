@@ -7,7 +7,7 @@
 - [Quick start guide](#Quick-start-guide)
   - [Install the prerequisites](#install-the-prerequisites)
   - [Start all MVS TurnKey installations](#Start-all-MVS-TurnKey-installations)
-  - [Access the MVS Console](#Access-the-MVS-Console)
+  - [Access the Hercules Console](#access-the-hercules-console)
   - [Connect to MVS in the container using the included c3270](#Connect-to-MVS-in-the-container-using-the-included-c3270)
   - [Stop all MVS TurnKey installations](#stop-all-mvs-turnkey-installations)
 - [Detailed description](#detailed-description)
@@ -47,7 +47,7 @@ requirering anything but Docker.
 Using Docker compose and the [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) file from this repo, 
 you can:
  * Start all MVS TurnKey installations using one command
- * Access the MVS console 
+ * Access the Hercules console 
  * Login to MVS using the included [c3270](https://x3270.miraheze.org/wiki/C3270) emulator.
 
 ## Prerequisites
@@ -80,16 +80,16 @@ which includes `VM370, TK4, TK5, TK5upd2, MVS/CE`.
 Use the `-f` argument, to point to [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) file, if it isn't in the current directory. 
 E.g. if compose.yml is in your home directory `docker compose -f ~/compose.yml up -d`
 
-## Access the MVS Console
+## Access the Hercules Console
 
-* Run the following command to access the MVS console for MVS/CE.
+* Run the following command to access the Hercules console for MVS/CE.
 
 ```sh
 docker attach ce
 ```
 
 In the command example `ce` is the name of the docker container, the name
-can be changed to another container name to get access to the MVS console for
+can be changed to another container name to get access to the Hercules console for
 any of the MVS TurnKey installations running in the containers.
 
 ![hercules console](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/hercules-console.jpeg?raw=true)
@@ -189,6 +189,7 @@ http://localhost:8880
 | Name       | Username  | Pwd      | Type                 |
 |:-----------|:----------| --------:|:---------------------|
 | **vm370**  | CMSUSER   | CMSUSER  | [How to...](./VM370.md#how-to-vm370-dosvs-and-c3270)            |
+|            | KICKS     | KICKS    | CMS                  |
 | **tk4**    | HERC01    | CUL8TR   | TSO                  |
 |            | HERC02    | CUL8TR   | TSO                  |
 |            | HERC03    | PASS4U   | TSO                  |
