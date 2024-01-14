@@ -8,7 +8,7 @@
   - [Install the prerequisites](#install-the-prerequisites)
   - [Start all MVS TurnKey installations](#Start-all-MVS-TurnKey-installations)
   - [Access the Hercules Console](#access-the-hercules-console)
-  - [Connect to MVS in the container using the included c3270](#Connect-to-MVS-in-the-container-using-the-included-c3270)
+  - [Connect to MVS in the container using the included c3270](#connect-to-mvs-in-the-container-using-the-included-c3270)
   - [Stop all MVS TurnKey installations](#stop-all-mvs-turnkey-installations)
 - [Detailed description](#detailed-description)
   - [Start a single container](#Start-a-single-container)
@@ -52,14 +52,14 @@ you can:
 
 ## Prerequisites
 
-* [Docker and Docker compose](https://www.docker.com/get-started)
-* [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) this is the only file required from [docker-mvs38j](https://github.com/MortenHarding/docker-mvs38j)
+* [Docker](https://www.docker.com/get-started)
+* [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) this is the only file required from github repo [docker-mvs38j](https://github.com/MortenHarding/docker-mvs38j)
 
 # Quick start guide
 
 ## Install the prerequisites
 
-* Install [Docker and Docker compose](https://www.docker.com/get-started). 
+* Install [Docker](https://www.docker.com/get-started). 
 * Download [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) into an empty directory.
 
 ## Start all MVS TurnKey installations
@@ -97,7 +97,7 @@ any of the MVS TurnKey installations running in the containers.
 
 ## Connect to MVS in the container using the included c3270
 
-* Run the following command to access MVS using the included c3270 emulator. [c3270 How to...](./VM370.md#c3270-basic-commands)
+* Run the following command to access MVS using the included c3270 emulator. [c3270 How to...](VM370.md#c3270-basic-commands)
 
 ```sh
 docker exec -it ce ./tn3270
@@ -144,7 +144,7 @@ MVS/CE is currently tagged as `latest`, hence it is not necessary to use the tag
 
 ### Start a non default container
 
-If you want a different TurnKey installation, use any of the other container tags.
+If you want a different TurnKey installation, use any of the container tags.
 For example if you'd like to start MVS TK5upd2 use:
 
 ```sh
@@ -160,7 +160,7 @@ The following example shows a single MVS Container tk5upd2 and c3270 emulator, s
 ### Access MVS using tn3270
 
 Access any of the MVS TurnKey installations that are started, using
-the included c3270, with the command below. [c3270 How to...](./VM370.md#c3270-basic-commands)
+the included c3270, with the command below. [c3270 How to...](VM370.md#c3270-basic-commands)
 
 Change the Container name `ce` to one of the names listed in [Container naming](#container-naming)
 
@@ -188,7 +188,7 @@ http://localhost:8880
 
 | Name       | Username  | Pwd      | Type                 |
 |:-----------|:----------| --------:|:---------------------|
-| **vm370**  | CMSUSER   | CMSUSER  | [How to...](./VM370.md#how-to-vm370-dosvs-and-c3270)            |
+| **vm370**  | CMSUSER   | CMSUSER  | [How to...](VM370.md#how-to-vm370-dosvs-and-c3270)            |
 |            | KICKS     | KICKS    | CMS                  |
 | **tk4**    | HERC01    | CUL8TR   | TSO                  |
 |            | HERC02    | CUL8TR   | TSO                  |
@@ -209,13 +209,16 @@ http://localhost:8880
 
 ### Container names
 
-| Container | 
-|:----------|
-| **vm370** |
-| **tk4**   |
-| **tk5**   |
-|**tk5upd2**|
-| **ce**    |
+| Container |                                    |
+|:----------|------------------------------------|
+| **vm370** | Includes DOS/VS [(Note 3)](#note-3)|
+| **tk4**   |                                    |
+| **tk5**   |                                    |
+|**tk5upd2**|                                    |
+| **ce**    |                                    |
+
+#### Note 3 
+[DOS/VS](http://www.vm370.org/dos) is included in the vm370 container and the Hercules config file, vm370ce.conf have entries for the DOS/VS devices.
 
 ### Port mappings
 
