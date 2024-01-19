@@ -8,7 +8,7 @@
   - [Install the prerequisites](#install-the-prerequisites)
   - [Start all MVS TurnKey installations](#Start-all-MVS-TurnKey-installations)
   - [Access the Hercules Console](#access-the-hercules-console)
-  - [Connect to MVS in the container using the included c3270](#connect-to-mvs-in-the-container-using-the-included-c3270)
+  - [Connect to MVS in all containers using the included c3270](#connect-to-mvs-in-all-the-container-using-the-included-c3270)
   - [Stop all MVS TurnKey installations](#stop-all-mvs-turnkey-installations)
 - [Detailed description](#detailed-description)
   - [Start a single container](#Start-a-single-container)
@@ -95,21 +95,24 @@ any of the MVS TurnKey installations running in the containers.
 ![hercules console](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/hercules-console.jpeg?raw=true)
 
 
-## Connect to MVS in the container using the included c3270
+## Connect to MVS in all containers using the included c3270
+
+The containers include [Zellij](https://zellij.dev/documentation/), a terminal multiplexer, that has been configured to open a session to all included contairnes.
 
 * Run the following command to access MVS using the included c3270 emulator. [c3270 How to...](VM370.md#c3270-basic-commands)
 
 ```sh
-docker exec -it ce ./tn3270
+docker exec -it ce ./zel3270
 ```
 
-This will start the c3270 emulator in the container named `ce`. 
+This will start the [Zellij](https://zellij.dev/documentation/) and open the c3270 emulator in the container named `ce`, with connections to MVS in all containers, and make `ce` the active connections.
 
-In the command example `ce` is the name of the docker container, the name
-can be changed to another container name to start c3270 and connect to
-any of the MVS TurnKey installations running in the containers.
+It is now possible to press `Ctrl + T` and use left and right arrow keys to select tab, with a connection to another MVS installation. 
 
-![MVS/CE logon](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/mvsce-logon.jpeg?raw=true)
+In the command example `ce` is the name of the docker container, this name
+can be changed to another container name to start with another active connection.
+
+![All TN3270 connections](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/zellij.png?raw=true)
 
 ## Stop all MVS TurnKey installations
 
@@ -265,5 +268,6 @@ The following software is used in the containers in this repo.
 - [VM370](http://www.vm370.org) - VM/370 Community Edition
 - [DOS/VS](http://www.vm370.org/dos) - DOS/VS 5pack release
 - [c3270](https://x3270.miraheze.org/wiki/C3270) - 3270 emulator for Linux
+- [Zellij](https://zellij.dev/documentation/) - Zellij terminal multiplexer
 - [docker-mvs38j](https://github.com/MortenHarding/docker-mvs38j) - Github repo with docker files for building these containers
 
