@@ -102,7 +102,7 @@ The containers include [Zellij](https://zellij.dev/documentation/), a terminal m
 * Run the following command to access MVS using the included c3270 emulator. [c3270 How to...](VM370.md#c3270-basic-commands)
 
 ```sh
-docker exec -it ce ./zel3270
+docker exec -it tk5upd2 ./zel3270
 ```
 
 This will start the [Zellij](https://zellij.dev/documentation/) and open the c3270 emulator in the container named `ce`, with connections to MVS in all containers, and make `ce` the active connections.
