@@ -8,7 +8,7 @@
   - [Install the prerequisites](#install-the-prerequisites)
   - [Start all MVS TurnKey installations](#Start-all-MVS-TurnKey-installations)
   - [Access the Hercules Console](#access-the-hercules-console)
-  - [Connect to MVS in all containers using the included c3270](#connect-to-mvs-in-all-the-container-using-the-included-c3270)
+  - [Connect to MVS in all containers using the included c3270](#connect-to-mvs-in-all-containers-using-the-included-c3270)
   - [Stop all MVS TurnKey installations](#stop-all-mvs-turnkey-installations)
 - [Detailed description](#detailed-description)
   - [Start a single container](#Start-a-single-container)
