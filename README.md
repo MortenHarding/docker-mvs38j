@@ -97,19 +97,19 @@ any of the MVS TurnKey installations running in the containers.
 
 ## Connect to MVS in all containers using the included c3270
 
-The containers include [Zellij](https://zellij.dev/documentation/), a terminal multiplexer, that has been configured to open a session to all included contairnes.
+The containers include [Zellij](https://zellij.dev/documentation/), a terminal multiplexer, that has been configured to open a session to all included containers.
 
-* Run the following command to access MVS using the included c3270 emulator. [c3270 How to...](VM370.md#c3270-basic-commands)
+* Run the following command to access MVS using [Zellij](https://zellij.dev/documentation/) and the included c3270 emulator. [c3270 How to...](VM370.md#c3270-basic-commands)
 
 ```sh
 docker exec -it tk5upd2 ./zel3270
 ```
 
-This will start the [Zellij](https://zellij.dev/documentation/) and open the c3270 emulator in the container named `ce`, with connections to MVS in all containers, and make `ce` the active connections.
+This will start [Zellij](https://zellij.dev/documentation/) and open the c3270 emulator in the container named `tk5upd2`, with connections to MVS in all containers, and make `tk5upd2` the active connection.
 
-It is now possible to press `Ctrl + T` and use left and right arrow keys to select tab, with a connection to another MVS installation. 
+It is now possible to press `Ctrl + T` and use left and right arrow keys to select a tab, with a connection to another MVS installation. 
 
-In the command example `ce` is the name of the docker container, this name
+In the command example `tk5upd2` is the name of the docker container, this name
 can be changed to another container name to start with another active connection.
 
 ![All TN3270 connections](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/zellij.png?raw=true)
