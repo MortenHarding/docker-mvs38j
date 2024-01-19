@@ -1,0 +1,42 @@
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    tab name="MVS/CE" {
+        pane name="tn3270 ce" {
+		command "./tn3270" 
+		args "ce"
+	} 
+    }
+    tab name="TK5upd2" {
+        pane name="tn3270 tk5upd2" {
+                command "./tn3270"
+                args "tk5upd2"
+        }        
+    }
+        tab name="TK5" {
+        pane name="tn3270 tk5" {
+                command "./tn3270"
+                args "tk5"
+        }
+    }
+    tab name="TK4" focus=true {
+	pane name="tn3270 tk4" {
+		focus true
+                command "./tn3270"
+                args "tk4"
+        }
+    }
+    tab name="VM370" {
+        pane name="tn3270 vm370" {
+                command "./tn3270"
+                args "vm370"
+        }
+    }
+}

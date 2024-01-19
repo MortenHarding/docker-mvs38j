@@ -12,7 +12,10 @@ EXPOSE 3270 8080 3221 3223 3505 3506 8888
 COPY 	mvs_docker \
 	tn3270 \
 	herc4x.zip \
+	zel3270 \
+	zellij \
 	/app/mvs/
+COPY tk5upd23270.kdl /app/mvs/3270.kdl
 RUN curl -O https://www.prince-webdesign.nl/images/downloads/mvs-tk5.zip \
 && unzip mvs-tk5.zip -d /app/mvs \
 && rm mvs-tk5.zip \

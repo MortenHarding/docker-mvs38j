@@ -1,6 +1,6 @@
 # Using Debian as a base
 FROM debian:stable-slim
-RUN apt-get update && apt-get install -y locales tmux curl unzip c3270 netbase \
+RUN apt-get update && apt-get install -y locales vim curl unzip c3270 netbase \
 && rm -rf /var/lib/apt/lists/* \
 && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
 && mkdir -p /app/mvs
@@ -13,7 +13,10 @@ COPY 	mvs_docker \
 	mvs-tk5.zip \
 	tn3270 \
 	herc4x.zip \
+	zel3270 \
+	zellij \
 	/app/mvs/
+COPY tk53270.kdl /app/mvs/3270.kdl
 RUN chmod +x mvs-tk5.zip \
 && unzip mvs-tk5.zip \
 && rm mvs-tk5.zip \

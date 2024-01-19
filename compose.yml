@@ -52,3 +52,7 @@ services:
       - "./ce/certs:/certs"
     stdin_open: true 
     tty: true
+networks:
+  hostnet:
+    external: true
+    name: host

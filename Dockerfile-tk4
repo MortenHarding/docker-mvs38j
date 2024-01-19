@@ -1,6 +1,6 @@
 # Using Debian as a base
 FROM debian:stable-slim
-RUN apt-get update && apt-get install -y locales tmux curl unzip c3270 netbase \
+RUN apt-get update && apt-get install -y locales vim curl unzip c3270 netbase \
 && rm -rf /var/lib/apt/lists/* \
 && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
 && mkdir -p /app/mvs
@@ -12,7 +12,10 @@ EXPOSE 3270 8080 3221 3223 3505 3506 8888
 COPY 	mvs_docker \
 	tn3270 \
 	herc4x.zip \
+	zel3270 \
+	zellij \
 	/app/mvs/
+COPY tk43270.kdl /app/mvs/3270.kdl
 RUN curl -k -O https://wotho.pebble-beach.ch/tk4-/tk4-_v1.00_current.zip \
 && chmod +x tk4-_v1.00_current.zip \
 && unzip tk4-_v1.00_current.zip -d /app/mvs \

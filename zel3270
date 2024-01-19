@@ -1,0 +1,2 @@
+#!/bin/bash
+./zellij --layout ./3270.kdl attach -c mvs options --simplified-ui true
