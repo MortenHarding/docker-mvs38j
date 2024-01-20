@@ -14,6 +14,7 @@
   - [Start a single container](#Start-a-single-container)
     - [Start the default container MVS/CE](#start-the-default-container-mvsce)
     - [Start a non default container](#start-a-non-default-container)
+  - [Stop and remove a single container](#stop-and-remove-a-single-container)
   - [Stop all containers](#stop-all-containers)
   - [How to connect](#how-to-connect)
     - [Connect to MVS in all containers using the included c3270](#connect-to-mvs-in-all-containers-using-the-included-c3270)
@@ -133,7 +134,7 @@ this command.
 docker run -it --name ce -p 3270:3270/tcp mhardingdk/mvs
 ```
 
-MVS/CE is currently tagged as `latest`, hence it is not necessary to use the tag "ce".
+MVS/CE is currently tagged as `latest`, hence it is not necessary to use the tag "ce". The docker option `-it` will make the command interactive, meaning that the Hercules console will be running in the shell were the docker command is executed. To run the command in the backupground use `-dit` meaning 'detached'.
 
 ### Start a non default container
 
@@ -150,6 +151,20 @@ The following example shows a single MVS Container tk5upd2 and c3270 emulator.
  * The Hercules console is accessed as described in [Access the Hercules console](#access-the-hercules-console).
 
 ![mvs-c3270](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/mvs-c3270.jpeg?raw=true)
+
+## Stop and remove a single container
+
+Stop a single container
+
+```sh
+docker container stop tk5upd2
+```
+
+Stop and remove a single container
+
+```sh
+docker container rm tk5upd2 -f
+```
 
 ## Stop all containers
 
