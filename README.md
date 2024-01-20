@@ -7,15 +7,18 @@
 - [Quick start guide](#Quick-start-guide)
   - [Install the prerequisites](#install-the-prerequisites)
   - [Start all MVS TurnKey installations](#Start-all-MVS-TurnKey-installations)
-  - [Access the Hercules Console](#access-the-hercules-console)
-  - [Connect to MVS in all containers using the included c3270](#connect-to-mvs-in-all-containers-using-the-included-c3270)
+  - [Connect to all MVS TurnKey installations](#connect-to-all-mvs-turnkey-installations)
   - [Stop all MVS TurnKey installations](#stop-all-mvs-turnkey-installations)
 - [Detailed description](#detailed-description)
+  - [Start all containers](#start-all-containers)
   - [Start a single container](#Start-a-single-container)
     - [Start the default container MVS/CE](#start-the-default-container-mvsce)
     - [Start a non default container](#start-a-non-default-container)
+  - [Stop all containers](#stop-all-containers)
   - [How to connect](#how-to-connect)
+    - [Connect to MVS in all containers using the included c3270](#connect-to-mvs-in-all-containers-using-the-included-c3270)
     - [Access MVS using tn3270](#access-mvs-using-tn3270)
+    - [Access the Hercules Console](#access-the-hercules-console)
     - [Access Hercules HTTP server](#access-hercules-http-server)
     - [Usernames and Passwords](#usernames-and-passwords)
   - [Container ports and mappings](#container-ports-and-mappings)
@@ -39,21 +42,21 @@ at the end of this page.
 
 # This Repo
 
-The containers that can be provisioned using the code in this repo include the [MVS TurnKey installations](#References), plus additional software, such as the latest release of [Hercules](https://hercules-390.github.io/html/) and [c3270](https://x3270.miraheze.org/wiki/C3270), making it possible to start one or more MVS TurnKey installations and connect using tn3270 without
-requirering anything but Docker.
+The containers that can be provisioned using the code in this repo include the [MVS TurnKey installations](#References), plus additional software, such as the latest release of [Hercules](https://hercules-390.github.io/html/), [Zellij](https://zellij.dev/documentation/) and [c3270](https://x3270.miraheze.org/wiki/C3270), making it possible to start one or more MVS TurnKey installations and connect using tn3270 without requirering anything but Docker.
 
 ## The benefit of this Repo 
 
 Using Docker compose and the [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) file from this repo, 
 you can:
  * Start all MVS TurnKey installations using one command
+ * Login to MVS using [Zellij](https://zellij.dev/documentation/) and [c3270](https://x3270.miraheze.org/wiki/C3270) emulator.
  * Access the Hercules console 
- * Login to MVS using the included [c3270](https://x3270.miraheze.org/wiki/C3270) emulator.
+
 
 ## Prerequisites
 
 * [Docker](https://www.docker.com/get-started)
-* [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) this is the only file required from github repo [docker-mvs38j](https://github.com/MortenHarding/docker-mvs38j)
+* [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml). This is the only file required from github repo [docker-mvs38j](https://github.com/MortenHarding/docker-mvs38j)
 
 # Quick start guide
 
@@ -70,7 +73,43 @@ you can:
 docker compose up -d
 ```
 
-This will pull the container images from https://hub.docker.com/r/mhardingdk/mvs 
+This will pull the container images from [hub.docker.com](https://hub.docker.com/r/mhardingdk/mvs) 
+and start a container for each of the MVS TurnKey installations.
+
+![docker compose up -d](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/docker-compose-up.jpeg?raw=true)
+
+## Connect to all MVS TurnKey installations
+
+* Run the following command to connect to MVS using [Zellij](https://zellij.dev/documentation/) and the [c3270](https://x3270.miraheze.org/wiki/C3270) emulator. [c3270 How to...](VM370.md#c3270-basic-commands)
+
+```sh
+docker exec -it ce ./zel3270
+```
+
+Press `Ctrl + T` and use left and right arrow keys to switch tabs. 
+
+![All TN3270 connections](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/zellij.png?raw=true)
+
+## Stop all MVS TurnKey installations
+
+
+```sh
+docker compose down
+```
+
+This will stop and remove the containers. [(Note 2)](#note-2)
+
+# Detailed description
+
+## Start all containers
+
+* Run the following command from the directory containing [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml). [(Note 1)](#note-1)
+
+```sh
+docker compose up -d
+```
+
+This will pull the container images from [hub.docker.com](https://hub.docker.com/r/mhardingdk/mvs) 
 and start a container for each of the MVS TurnKey installations in this repo, 
 which includes `VM370, TK4, TK5, TK5upd2, MVS/CE`.
 
@@ -79,55 +118,6 @@ which includes `VM370, TK4, TK5, TK5upd2, MVS/CE`.
 #### Note 1 
 Use the `-f` argument, to point to [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) file, if it isn't in the current directory. 
 E.g. if compose.yml is in your home directory `docker compose -f ~/compose.yml up -d`
-
-## Access the Hercules Console
-
-* Run the following command to access the Hercules console for MVS/CE.
-
-```sh
-docker attach ce
-```
-
-In the command example `ce` is the name of the docker container, the name
-can be changed to another container name to get access to the Hercules console for
-any of the MVS TurnKey installations running in the containers.
-
-![hercules console](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/hercules-console.jpeg?raw=true)
-
-
-## Connect to MVS in all containers using the included c3270
-
-The containers include [Zellij](https://zellij.dev/documentation/), a terminal multiplexer, that has been configured to open a session to all included containers.
-
-* Run the following command to access MVS using [Zellij](https://zellij.dev/documentation/) and the included c3270 emulator. [c3270 How to...](VM370.md#c3270-basic-commands)
-
-```sh
-docker exec -it ce ./zel3270
-```
-
-This will start [Zellij](https://zellij.dev/documentation/) and open the c3270 emulator in the container named `ce`, with connections to MVS in all containers, and make `ce` the active connection.
-
-It is now possible to press `Ctrl + T` and use left and right arrow keys to select a tab, with a connection to another MVS installation. 
-
-In the command example `ce` is the name of the docker container, this name
-can be changed to another container name to start with another active connection.
-
-![All TN3270 connections](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/zellij.png?raw=true)
-
-## Stop all MVS TurnKey installations
-
-* Run the following command.
-
-```sh
-docker compose down
-```
-
-This will stop and remove the containers. [(Note 2)](#note-2)
-
-#### Note 2 
-The subdirectories created during `docker compose up` by [volume mapping](#volume-mapping) will not be removed.
-
-# Detailed description
 
 ## Start a single container
 
@@ -154,11 +144,47 @@ For example if you'd like to start MVS TK5upd2 use:
 docker run -it --name tk5upd2 -p 3270:3270/tcp mhardingdk/mvs:tk5upd2
 ```
 
-The following example shows a single MVS Container tk5upd2 and c3270 emulator, started as described above.
+The following example shows a single MVS Container tk5upd2 and c3270 emulator. 
+ * The container is started as described in the above command 
+ * c3270 is accessed as described in [Access MVS using tn3270](#access-mvs-using-tn3270) 
+ * The Hercules console is accessed as described in [Access the Hercules console](#access-the-hercules-console).
 
 ![mvs-c3270](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/mvs-c3270.jpeg?raw=true)
 
+## Stop all containers
+
+* Run the following command.
+
+```sh
+docker compose down
+```
+
+This will stop and remove the containers. [(Note 2)](#note-2)
+
+#### Note 2 
+The subdirectories created during `docker compose up` by [volume mapping](#volume-mapping) will not be removed.
+
 ## How to connect
+
+## Connect to MVS in all containers using the included c3270
+
+The containers include [Zellij](https://zellij.dev/documentation/), a terminal multiplexer, that has been configured to open a 3270 connection to all included containers.
+
+* Run the following command to access MVS using [Zellij](https://zellij.dev/documentation/) and the included c3270 emulator. [c3270 How to...](VM370.md#c3270-basic-commands)
+
+```sh
+docker exec -it ce ./zel3270
+```
+
+This will start [Zellij](https://zellij.dev/documentation/) and open the c3270 emulator in the container named `ce`, with connections to MVS in all containers, and make `ce` the active connection.
+
+Press `Ctrl + T` and use left and right arrow keys to switch between tabs. 
+
+In the command example `ce` is the name of the docker container, this container name
+can be changed to another container name listed in [Container naming](#container-naming), to have a different active connection at startup.
+
+![All TN3270 connections](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/zellij.png?raw=true)
+
 
 ### Access MVS using tn3270
 
@@ -178,6 +204,19 @@ listed in [Port mappings](#port-mappings).
 ```sh
 ./your-own-tn3270-emulator localhost:3270
 ```
+
+## Access the Hercules Console
+
+* Run the following command to access the Hercules console for MVS/CE.
+
+```sh
+docker attach ce
+```
+
+In the command example `ce` is the name of the docker container, the name
+can be changed to another container name listed in [Container naming](#container-naming), to get access to the Hercules console for any of the MVS TurnKey installations running in the containers.
+
+![hercules console](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/hercules-console.jpeg?raw=true)
 
 ### Access Hercules HTTP server
 
