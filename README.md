@@ -11,9 +11,7 @@
   - [Stop all MVS TurnKey installations](#stop-all-mvs-turnkey-installations)
 - [Detailed description](#detailed-description)
   - [Start all containers](#start-all-containers)
-  - [Start a single container](#Start-a-single-container)
-    - [Start the default container MVS/CE](#start-the-default-container-mvsce)
-    - [Start a non default container](#start-a-non-default-container)
+  - [Start a single container](#start-a-single-container)
   - [Stop and remove a single container](#stop-and-remove-a-single-container)
   - [Stop all containers](#stop-all-containers)
   - [How to connect](#how-to-connect)
@@ -122,27 +120,12 @@ E.g. if compose.yml is in your home directory `docker compose -f ~/compose.yml u
 
 ## Start a single container
 
-To start a single container, or less than the included 5 containers, edit the downloaded [compose.yml](https://github.com/MortenHarding/docker-mvs38j/blob/main/compose.yml) and remove any containers you do not want started, and run the command listed in [Start all MVS TurnKey installations](#Start-all-MVS-TurnKey-installations).
-Or use the commands described below, to start single containers using `docker run`.
+To start a single container use the commands described below.
 
-### Start the default container MVS/CE
-
-If you prefer to only start a single MVS TurnKey installation, you can run
-this command.
-
-```sh
-docker run -it --name ce -p 3270:3270/tcp mhardingdk/mvs
-```
-
-MVS/CE is currently tagged as `latest`, hence it is not necessary to use the tag "ce". The docker option `-it` will make the command interactive, meaning that the Hercules console will be running in the shell were the docker command is executed. To run the command in the backupground use `-dit` meaning 'detached'.
-
-### Start a non default container
-
-If you want a different TurnKey installation, use any of the container tags.
 For example if you'd like to start MVS TK5upd2 use:
 
 ```sh
-docker run -it --name tk5upd2 -p 3270:3270/tcp mhardingdk/mvs:tk5upd2
+docker compose up -d tk5upd2
 ```
 
 The following example shows a single MVS Container tk5upd2 and c3270 emulator. 
@@ -154,16 +137,10 @@ The following example shows a single MVS Container tk5upd2 and c3270 emulator.
 
 ## Stop and remove a single container
 
-Stop a single container
-
-```sh
-docker container stop tk5upd2
-```
-
 Stop and remove a single container
 
 ```sh
-docker container rm tk5upd2 -f
+docker compose down tk5upd2
 ```
 
 ## Stop all containers
