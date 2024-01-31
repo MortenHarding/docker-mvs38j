@@ -7,6 +7,12 @@ services:
     ports:
       - "3274:3270"
       - "8884:8081"
+    volumes:
+      - "./vm370/config:/app/mvs/conf"
+      - "./vm370/dasd:/app/mvs/disks"
+      - "./vm370/doc:/app/mvs/doc"
+      - "./vm370/dosvs:/app/mvs/dosvs"
+      - "./vm370/log:/app/mvs/log"
     stdin_open: true
     tty: true
   tk4:
@@ -15,6 +21,13 @@ services:
     ports:
       - "3273:3270"
       - "8883:8038"
+    volumes:
+      - "./tk4/config:/app/mvs/conf"
+      - "./tk4/printers:/app/mvs/prt"
+      - "./tk4/punchcards:/app/mvs/pch"
+      - "./tk4/log:/app/mvs/log"
+      - "./tk4/dasd:/app/mvs/dasd"
+      - "./tk4/doc:/app/mvs/doc"
     stdin_open: true 
     tty: true
   tk5:
@@ -23,6 +36,13 @@ services:
     ports:
       - "3272:3270"
       - "8882:8038"
+    volumes:
+      - "./tk5/config:/app/mvs/conf"
+      - "./tk5/printers:/app/mvs/prt"
+      - "./tk5/punchcards:/app/mvs/pch"
+      - "./tk5/log:/app/mvs/log"
+      - "./tk5/dasd:/app/mvs/dasd"
+      - "./tk5/doc:/app/mvs/doc"
     stdin_open: true 
     tty: true
   tk5upd2:
@@ -31,6 +51,13 @@ services:
     ports:
       - "3271:3270"
       - "8881:8038"
+    volumes:
+      - "./tk5upd2/config:/app/mvs/conf"
+      - "./tk5upd2/printers:/app/mvs/prt"
+      - "./tk5upd2/punchcards:/app/mvs/pch"
+      - "./tk5upd2/log:/app/mvs/log"
+      - "./tk5upd2/dasd:/app/mvs/dasd"
+      - "./tk5upd2/doc:/app/mvs/doc"
     stdin_open: true 
     tty: true
   ce:
