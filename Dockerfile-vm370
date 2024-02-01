@@ -1,13 +1,14 @@
 # Using Debian as a base
 FROM debian:stable-slim
-RUN apt-get update && apt-get install -y rsync locales curl vim unzip c3270 netbase \
+RUN apt-get update && apt-get install -y rsync locales curl unzip c3270 netbase \
 && rm -rf /var/lib/apt/lists/* \
 && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
-&& mkdir -p /app/mvs \
-&& mkdir -p /app/mvs/conf \
-&& mkdir -p /app/mvs/log \
-&& mkdir -p /app/mvs/doc
-ENV LANG en_US.utf8
+&& mkdir -p /app/mvs/backup \
+&& mkdir -p /app/mvs/backup/conf \
+&& mkdir -p /app/mvs/backup/log \
+&& mkdir -p /app/mvs/backup/doc
+ENV LANG=en_US.utf8 \
+PATH="/app/hercules/herc4x/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 # Setup MVS
 WORKDIR /app/mvs
@@ -17,32 +18,25 @@ COPY tn3270 \
 	vm370ce.dosvs \	
 	zel3270 \
 	zellij \
+	herclogo.txt \
+	vm370ce.sh \
 	/app/mvs/
 RUN curl -k -O http://www.vm370.org/sites/default/files/2022-07/VM370CE.V1.R1.2.zip \
 && unzip VM370CE.V1.R1.2.zip -d /app \
 && rm VM370CE.V1.R1.2.zip \
-&& mkdir /app/mvs/backup \
 && mv /app/VM370CE.V1.R1.2/* -t /app/mvs/backup \
-&& cp -r /app/mvs/backup/* /app/mvs \
-&& rm /app/mvs/vm370ce.conf \
-&& cp /app/mvs/vm370ce.dosvs /app/mvs/conf/vm370ce.conf \
-&& cp *.txt /app/mvs/doc \
-&& cp *.pdf /app/mvs/doc \
+&& cp /app/mvs/vm370ce.dosvs /app/mvs/backup/conf/vm370ce.conf \
+&& cp /app/mvs/backup/*.txt /app/mvs/backup/doc \
+&& cp /app/mvs/backup/*.pdf /app/mvs/backup/doc \
 && unzip herc4x.zip -d /app/hercules/ \
 && /app/hercules/herc4x/hyperion-init-bash.sh \
-&& rm herc4x.zip \
-&& chmod -R +x /app/mvs/*
-
-COPY vm3703270.kdl \
-	herclogo.txt \
-	vm370ce.sh \
-	/app/mvs/
+&& rm herc4x.zip
+COPY vm3703270.kdl /app/mvs/3270.kdl
 
 #Get DOS/VS
 RUN curl -k -O http://www.vm370.org/sites/default/files/2022-07/DOSVS_5Pack_V1.0-full.zip \
 && unzip DOSVS_5Pack_V1.0-full.zip -d /app/mvs/backup \
 && rm DOSVS_5Pack_V1.0-full.zip \
 && mv /app/mvs/backup/DOSVS_5Pack_V1.0-full/* -t /app/mvs/backup/dosvs \
-&& cp -r /app/mvs/backup/dosvs/* /app/mvs/dosvs
-ENV PATH="/app/hercules/herc4x/bin:/app/mvs:$PATH"
+&& chmod -R +x /app/*
 ENTRYPOINT ["/bin/bash","./vm370ce.sh"]

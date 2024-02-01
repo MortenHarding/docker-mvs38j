@@ -1,10 +1,11 @@
 # Using Debian as a base
 FROM debian:stable-slim
-RUN apt-get update && apt-get install -y rsync locales vim curl unzip c3270 netbase \
+RUN apt-get update && apt-get install -y rsync locales curl unzip c3270 netbase \
 && rm -rf /var/lib/apt/lists/* \
 && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
-&& mkdir -p /app/mvs
-ENV LANG en_US.utf8
+&& mkdir -p /app/mvs/backup
+ENV LANG=en_US.utf8 \
+PATH="/app/hercules/herc4x/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 # Setup MVS
 WORKDIR /app/mvs
@@ -15,19 +16,16 @@ COPY mvs_docker \
 	herc4x.zip \
 	zel3270 \
 	zellij \
+	herclogo.txt \
 	/app/mvs/
 COPY tk53270.kdl /app/mvs/3270.kdl
 RUN chmod +x mvs-tk5.zip \
 && unzip mvs-tk5.zip \
 && rm mvs-tk5.zip \
-&& mkdir /app/mvs/backup \
 && mv ./mvs-tk5/* -t /app/mvs/backup \
-&& cp -r ./backup/* /app/mvs \
-&& rm -rf /app/mvs/hercules/linux/64 \
-&& unzip herc4x.zip -d /app/mvs/hercules/linux/ \
-&& mv /app/mvs/hercules/linux/herc4x /app/mvs/hercules/linux/64 \
+&& rm -rf /app/mvs/backup/hercules/linux/64 \
+&& unzip herc4x.zip -d /app/mvs/backup/hercules/linux/ \
 && rm herc4x.zip \
-&& rm herclogo.txt \
+&& mv /app/mvs/backup/hercules/linux/herc4x /app/mvs/backup/hercules/linux/64 \
 && chmod -R +x /app/*
-COPY herclogo.txt /app/mvs/herclogo.txt
 ENTRYPOINT ["/bin/bash","./mvs_docker"]
