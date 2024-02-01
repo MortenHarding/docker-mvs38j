@@ -276,16 +276,39 @@ http://localhost:8880
 
 ## Volume mapping
 
-The following volume mappings are only relevant for MVS/CE. These subdirectories will be created in the directory, where `docker compose up -d` is executed. If you do not want the folders created on your host, edit the `compose.yml` file and remove the section named `volumes:`.
+The subdirectories in column `Host directory` will be created in the directory, where `docker compose up -d` is executed. These directories will give you access to logs, disks printer output, included documentation and config files. If you do not want the folders created on your host, edit the `compose.yml` file and remove the section named `volumes:`.
 
-| Host            | Container  |
-| :---------------|:-----------|
-| ./ce/config     | /config    |
-| ./ce/printers   | /printers  |
-| ./ce/punchcards | /punchcards|
-| ./ce/logs       | /logs      |
-| ./ce/dasd       | /dasd      |
-| ./ce/certs      | /certs     |
+| Name      | Host directory       | Container  |
+|:----------| :--------------------|:-----------|
+| **vm370** | ./vm370/config       | /conf      |
+|           | ./vm370/log          | /log       |
+|           | ./vm370/doc          | /doc       |
+|           | ./vm370/dasd         | /disks     |
+|           | ./vm370/dosvs        | /dosvs     |
+| **tk4**   | ./tk4/config         | /conf      |
+|           | ./tk4/printers       | /prt       |
+|           | ./tk4/punchcards     | /pch       |
+|           | ./tk4/log            | /log       |
+|           | ./tk4/dasd           | /dasd      |
+|           | ./tk4/doc            | /doc       |
+| **tk5**   | ./tk5/config         | /conf      |
+|           | ./tk5/printers       | /prt       |
+|           | ./tk5/punchcards     | /pch       |
+|           | ./tk5/log            | /log       |
+|           | ./tk5/dasd           | /dasd      |
+|           | ./tk5/doc            | /doc       |
+|**tk5upd2**| ./tk5upd2/config     | /conf      |
+|           | ./tk5upd2/printers   | /prt       |
+|           | ./tk5upd2/punchcards | /pch       |
+|           | ./tk5upd2/log        | /log       |
+|           | ./tk5upd2/dasd       | /dasd      |
+|           | ./tk5upd2/doc        | /doc       |
+|  **ce**   | ./ce/config          | /config    |
+|           | ./ce/printers        | /printers  |
+|           | ./ce/punchcards      | /punchcards|
+|           | ./ce/logs            | /logs      |
+|           | ./ce/dasd            | /dasd      |
+|           | ./ce/certs           | /certs     |
 
 # References
 

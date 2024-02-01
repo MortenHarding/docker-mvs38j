@@ -10,4 +10,5 @@
 #**********************************************************************
 echo "CONSOLE">unattended/mode
 echo "Hercules console mode activated for unattended operations mvs"
+rsync -a -r --ignore-existing ./backup/* /app/mvs
 ./mvs
