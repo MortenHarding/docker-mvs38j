@@ -12,6 +12,7 @@ services:
       - "./mts/dasd:/app/mts/Disks"
       - "./mts/doc:/app/mts/doc"
       - "./mts/units:/app/mts/Units"
+      - "./mts/log:/app/mts/log"
     stdin_open: true
     tty: true
   vm370:

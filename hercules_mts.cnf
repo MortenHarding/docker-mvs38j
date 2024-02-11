@@ -165,5 +165,8 @@ OSTAILOR QUIET
 # Devices 0D00-0D03 (D500-D503) and 0E00-0E03 (D600-D603) are defined
 # as 9335 disks in the D6.0 and D6.0A TABLES, but there are bugs in
 # the D6.0 and D6.0A 9335 support, so these devices can't be used.
-
+#################################
+# Adding HTTP server for Docker
+HTTP   PORT 8081
+HTTP   START
 # END

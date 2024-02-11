@@ -18,7 +18,7 @@ COPY mts_docker \
 	herclogo.txt \
 	hercules_mts.cnf \
 	/app/mts/
-COPY tk53270.kdl /app/mts/3270.kdl
+COPY mts3270.kdl /app/mts/3270.kdl
 RUN curl -LOs https://archive.org/download/ia-pex/ia \
 && chmod +x ia \
 && ./ia download michigan-terminal-system-distribution-documentation-and-files --glob="versioned distributions/d6*" \
@@ -26,11 +26,15 @@ RUN curl -LOs https://archive.org/download/ia-pex/ia \
 && rm ia \
 && unzip michigan-terminal-system-distribution-documentation-and-files/documentation/mtsDistDoc.zip -d /app/mts/backup/doc/ \
 && unzip michigan-terminal-system-distribution-documentation-and-files/versioned\ distributions/d6.0A.zip -d /app/mts/backup/ \
-&& unzip michigan-terminal-system-distribution-documentation-and-files/versioned\ distributions/d6.0.tar.gz -d /app/mts/backup/ \
+&& gunzip -c michigan-terminal-system-distribution-documentation-and-files/versioned\ distributions/d6.0.tar.gz > /app/mts/backup/d6.0.tar \
+&& tar -xvf /app/mts/backup/d6.0.tar \
+&& rm /app/mts/backup/d6.0.tar \
+&& rm -rf michigan-terminal-system-distribution-documentation-and-files/versioned\ distributions/ \
 && rm -rf /app/mts/backup/__MACOSX
 RUN unzip herc4x.zip -d /app/hercules/ \
 && rm herc4x.zip \
 && /app/hercules/herc4x/hyperion-init-bash.sh \
-&& mv hercules_mts.cnf hercules.cnf \
+&& mkdir -p /app/mts/config \
+&& mkdir -p /app/mts/log \
 && chmod -R +x /app/*
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/bash","./mts_docker"]

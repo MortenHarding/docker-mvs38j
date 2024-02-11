@@ -11,5 +11,6 @@
 echo "CONSOLE">unattended/mode
 echo "Hercules console mode activated for unattended operations mvs"
 rsync -a -r --ignore-existing ./backup/mts/d6.0A/* /app/mts
-rsync -a -r --ignore-existing ./backup//doc/mtsDistDoc/* /app/mts/doc
-hercules
+rsync -a -r --ignore-existing ./backup/doc/mtsDistDoc/* /app/mts/doc
+rsync -a -r --ignore-existing hercules_mts.cnf /app/mts/config/hercules.cnf
+hercules -f config/hercules.cnf > ./log/hercules.log
