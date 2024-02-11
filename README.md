@@ -222,6 +222,7 @@ http://localhost:8880
 
 | Name       | Username  | Pwd      | Type                 |
 |:-----------|:----------| --------:|:---------------------|
+| **mts**    |           |          | [How to...](https://try-mts.com/why-try-mts/)          |
 | **vm370**  | CMSUSER   | CMSUSER  | [How to...](VM370.md#how-to-vm370-dosvs-and-c3270)            |
 |            | KICKS     | KICKS    | CMS                  |
 | **tk4**    | HERC01    | CUL8TR   | TSO                  |
@@ -245,6 +246,7 @@ http://localhost:8880
 
 | Container |                                    |
 |:----------|------------------------------------|
+| **mts**   |                                    |
 | **vm370** | Includes DOS/VS [(Note 3)](#note-3)|
 | **tk4**   |                                    |
 | **tk5**   |                                    |
@@ -258,6 +260,8 @@ http://localhost:8880
 
 | Name/port | Container | Host  |                      |
 |:----------|----------:| -----:|:---------------------|
+| **vm370** | 3270      | 3275  | tn3270               |
+|           | 8081      | 8885  | Hercules http server |
 | **vm370** | 3270      | 3274  | tn3270               |
 |           | 8081      | 8884  | Hercules http server |
 | **tk4**   | 3270      | 3273  | tn3270               |
@@ -280,6 +284,11 @@ The subdirectories in column `Host directory` will be created in the directory, 
 
 | Name      | Host directory       | Container  |
 |:----------| :--------------------|:-----------|
+|  **mts**  | ./mts/tapes          | /Tapes     |
+|           | ./mts/log            | /log       |
+|           | ./mts/doc            | /doc       |
+|           | ./mts/dasd           | /Disks     |
+|           | ./mts/units          | /Units     |
 | **vm370** | ./vm370/config       | /conf      |
 |           | ./vm370/log          | /log       |
 |           | ./vm370/doc          | /doc       |
@@ -321,6 +330,8 @@ The following software is used in the containers in this repo.
 - [MVS Turn Key 4](https://wotho.pebble-beach.ch/tk4-) - by Juergen Winkelmann
 - [VM370](http://www.vm370.org) - VM/370 Community Edition
 - [DOS/VS](http://www.vm370.org/dos) - DOS/VS 5pack release
+- [MTS](https://archive.org/details/michigan-terminal-system-distribution-documentation-and-files) - MTS software
+- [MTS how to](https://try-mts.com/why-try-mts/)
 - [c3270](https://x3270.miraheze.org/wiki/C3270) - 3270 emulator for Linux
 - [Zellij](https://zellij.dev/documentation/) - Zellij terminal multiplexer
 - [docker-mvs38j](https://github.com/MortenHarding/docker-mvs38j) - Github repo with docker files for building these containers

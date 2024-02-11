@@ -11,8 +11,7 @@ WORKDIR /app/mvs
 EXPOSE 3270 8080 3221 3223 3505 3506 8888
 COPY 	mvs_docker \
 	tn3270 \
-	herc4x.zip \
-	vm370ce.dosvs \
+	mts.zip \
 	/app/mvs/
 RUN curl -k -O http://www.vm370.org/sites/default/files/2022-07/VM370CE.V1.R1.2.zip \
 && unzip VM370CE.V1.R1.2.zip -d /app/mvs \

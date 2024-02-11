@@ -1,0 +1,169 @@
+#########################################
+# Hercules emulator configuration file  #
+#    Version AN182 (18 January 2012)    #
+#   A template for use with MTS D6.0A   #
+#########################################
+
+# Adjust this template for use in your own environment
+
+# You'll need to put the D6 files in the right places.
+
+# For D6.0, but not for D6.0A you need to create a 
+# 3380 disk image before you start using something 
+# similar to:
+#    dasdinit -z -a MTS600.dsk 3380-1 MTS600
+
+# In general the Hercules device configuration needs to
+# match or at least be a subset of the D6.0 version
+# of TABLES as described in the following list from
+# the D6.0-NEWSYS.txt writeup:
+#
+#    Device Type     Address            Device name
+#    -----------     ---------          -----------
+#
+#    3287            0000               PTR1  
+#    3270            0001-0007          DS01-DS07
+#    3270 (in D5.0)  0009               CON1 (in D6.0)
+#    1052 (in D6.0A) 0009               CON1 (in D6.0A)
+#
+#    2540R           000C               RDR1
+#    2540P           000D               PCH1
+#    1403            000E               PTR2
+#
+#    3270            001F               CON2
+#
+#    3287            0100               PTR3  
+#    3270            0101-011F          DS21-DS3F
+#    3420            0180-018F          T900-T90F
+#
+#    3330            0200-020F          D100-D10F
+#    3350            0220-022F          D200-D20F
+#    3370            0240-024F          D300-D30F
+#    3380            0260-026F          D400-D40F
+#
+#    3420            0C70               T920
+#
+#    9335            0D00-0D03          D500-D503
+#    9335            0E00-0E03          D600-D603
+
+ARCHMODE  ESA/390  # includes 370-XA (MTS architecture code "MP")
+CODEPAGE  437/037
+
+CPUSERIAL 000611
+CPUMODEL  3090
+CPUVERID  FF       # the value FF here causes MTS to bypass
+                   # its reguests to set the TOD clock
+MAINSIZE  128
+
+# Adjust the following two values for your local configuration
+# MTS does support operation on multi-CPU configurations with
+# (in theory) up to 32 processors, although 6 processors is likely
+# the maximum number ever used in "real life".
+
+NUMCPU   1 
+MAXCPU   1
+
+XPNDSIZE 0  # D6.0 of MTS will use expanded storage as a write through
+            # disk cache, if expanded storage is present
+
+SYSEPOCH 1900
+TZOFFSET -0000  # MTS uses GMT for its TOD clock
+
+# YROFFSET is not needed for the D6.0A or D1996.0 versions of MTS.
+# For D6.0 uncomment the following parameter. 
+
+# YROFFSET -23  # For D6.0, but not D6.0A set the year back to 
+                # avoid time/date rollover issues.
+                # For D6.0, needs to give dates after D6.0 was 
+                # released in 1988, but before November 1989.
+
+CNSLPORT 3270   # the port that tn3270 sessions will use to connect
+OSTAILOR QUIET
+
+###### Device definitions #####
+
+# Display and console devices
+
+# The definition for address 0009 below doesn't match the D6.0 
+# definition in TABLES, but in D6.0A TABLES is patched to make 
+# address 0009 a 1052 console/printer and CON1 will be used as 
+# the MTS Operator's Console log printer with its output directed 
+# to the Hercules console.
+
+0000   3287    # PTR1, a 3270 data stream printer
+0001.7 3270    # DS01 through DS07
+0009   1052-C  # CON1, comment this line out and
+# 0009 3270    # CON1, uncomment this line if you want the
+               #       definition to match the definition
+               #       in the D6.0 version of TABLES 
+001F   3270    # CON2
+0100   3287    # PTR3, a 3270 data stream printer
+0101.7 3270    # DS21 through DS27
+
+# Unit record devices
+
+000C   3505   Units/RDR1.txt ascii eof   # RDR1
+000D   3525   Units/PCH1.txt ascii       # PCH1
+
+# Diferent versions of Hercules support different printer options.
+# Uncomment one of the following three device definitions for addr 000E.
+# The three definitions are listed in order from newest to oldest
+# and from best to worst in terms of functionality. 
+# The fcb= option defines the MTS printer carriage control tape.
+# The nofcbcheck option supresses errors (command reject) when
+# a skip to an undefined printer carriage tape channel is used.
+# If the third (last) option is used, errors will result when 
+# HASP tries to print its head and tail sheets on the printer,
+# effectively making HASP printing unusable.
+
+000E 1403   Units/PTR2.txt lpp=66 fcb=1:11,4:1,5:5,8:10,14:6,19:4,24:7,34:2,44:6,49:4,54:7,63:8,66:3 optprint # PTR2
+# 000E 1403   Units/PTR2.txt nofcbcheck  # PTR2
+# 000E   1403   Units/PTR2.txt             # PTR2
+
+# Tapes
+
+# These ten tape definitions are not required for D6.0A
+# and may be commented out.
+
+0180   3420   Tapes/d6.0util.aws ro  # T900, D6.0 utilities tape
+0181   3420   Tapes/d6.0dr1.aws  ro  # T901, D6.0 IPLable dump/restore tape #1
+0182   3420   Tapes/d6.0dr2.aws  ro  # T902, D6.0 dump/restore tape #2
+0183   3420   Tapes/d6.0dr3.aws  ro  # T903, D6.0 dump/restore tape #3
+0184   3420   Tapes/d6.0t1.aws   ro  # T904, *FS D6.0 distribution tapes #1
+0185   3420   Tapes/d6.0t2.aws   ro  # T905,  " #2
+0186   3420   Tapes/d6.0t3.aws   ro  # T906,  " #3
+0187   3420   Tapes/d6.0t4.aws   ro  # T907,  " #4
+0188   3420   Tapes/d6.0t5.aws   ro  # T908,  " #5
+0189   3420   Tapes/d6.0t6.aws   ro  # T909,  " #6
+
+018A 3420 Tapes/cmd001.aws       # T90A, a CMDSTAT tape for use by *DWB
+
+# Devices 018B through 018F and 0C70 (T90B to T90F and T920) are defined
+# as 9TP (3420) tape drives in TABLES and so could be defined here
+
+# Disk(s)
+
+# Shadow files (sf=) won't be used until the Hercules command "sf+" 
+# is issued, unless the shadow file already exists or the base and 
+# shadow files are read-only in which case a new shadow file will 
+# be created.
+
+0260   3380   Disks/mts600.dsk sf=Disks/mts600_*.dsk # D400
+
+# D6.0 and D6.0A of MTS support single density (3380-1), but not 
+# double density (3380-2) or triple density (3380-3), 3380 disks.
+
+# New 3380 disks need to be initialized using dasdinit's -a option 
+# so that the alternate tracks are included. For example:
+#    dasdinit -z -a MTS600.dsk 3380-1 MTS600
+
+# Devices 0200-020F (D100-D10F), 0220-022F (D200-D20F),
+# 0240-024F (D300-D30F) and 0261-026F (D401-D40F) are 
+# defined as 3330, 3350, 3370, and 3380 disks and so
+# copuld be defined here.
+
+# Devices 0D00-0D03 (D500-D503) and 0E00-0E03 (D600-D603) are defined
+# as 9335 disks in the D6.0 and D6.0A TABLES, but there are bugs in
+# the D6.0 and D6.0A 9335 support, so these devices can't be used.
+
+# END

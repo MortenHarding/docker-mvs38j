@@ -1,0 +1,36 @@
+# Using Debian as a base
+FROM debian:stable-slim
+RUN apt-get update && apt-get install -y python3-apt rsync locales curl unzip c3270 netbase \
+&& rm -rf /var/lib/apt/lists/* \
+&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
+&& mkdir -p /app/mts/backup
+ENV LANG=en_US.utf8 \
+PATH="/app/hercules/herc4x/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# Setup MTS
+WORKDIR /app/mts
+EXPOSE 3270 8080 3221 3223 3505 3506 8888
+COPY mts_docker \
+	tn3270 \
+	herc4x.zip \
+	zel3270 \
+	zellij \
+	herclogo.txt \
+	hercules_mts.cnf \
+	/app/mts/
+COPY tk53270.kdl /app/mts/3270.kdl
+RUN curl -LOs https://archive.org/download/ia-pex/ia \
+&& chmod +x ia \
+&& ./ia download michigan-terminal-system-distribution-documentation-and-files --glob="versioned distributions/d6*" \
+&& ./ia download michigan-terminal-system-distribution-documentation-and-files documentation/mtsDistDoc.zip \
+&& rm ia \
+&& unzip michigan-terminal-system-distribution-documentation-and-files/documentation/mtsDistDoc.zip -d /app/mts/backup/doc/ \
+&& unzip michigan-terminal-system-distribution-documentation-and-files/versioned\ distributions/d6.0A.zip -d /app/mts/backup/ \
+&& unzip michigan-terminal-system-distribution-documentation-and-files/versioned\ distributions/d6.0.tar.gz -d /app/mts/backup/ \
+&& rm -rf /app/mts/backup/__MACOSX
+RUN unzip herc4x.zip -d /app/hercules/ \
+&& rm herc4x.zip \
+&& /app/hercules/herc4x/hyperion-init-bash.sh \
+&& mv hercules_mts.cnf hercules.cnf \
+&& chmod -R +x /app/*
+ENTRYPOINT ["/bin/bash"]
