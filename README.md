@@ -326,12 +326,12 @@ For detailed documentation please refer to the specific TurnKey installation doc
 The following software is used in the containers in this repo.
 - [Hercules](https://hercules-390.github.io/html/) - Hercules System/370, ESA/390, and z/Architecture Emulator
 - [MVS/CE](https://hub.docker.com/r/mainframed767/mvsce) - MVS/CE Docker image - By mainframed767
-- [MVS Turn Key 5](https://www.prince-webdesign.nl/index.php/software/mvs-3-8j-turnkey-5) - by Rob Prins
+- [MVS Turn Key 5 update 2](https://www.prince-webdesign.nl/index.php/software/mvs-3-8j-turnkey-5) - by Rob Prins
 - [MVS Turn Key 4](https://wotho.pebble-beach.ch/tk4-) - by Juergen Winkelmann
-- [VM370](http://www.vm370.org) - VM/370 Community Edition
-- [DOS/VS](http://www.vm370.org/dos) - DOS/VS 5pack release
+- [VM/370](http://www.vm370.org) - VM/370 Community Edition
+- [DOS/VS](http://www.vm370.org/dos) - DOS/VS 5 pack release
 - [MTS](https://archive.org/details/michigan-terminal-system-distribution-documentation-and-files) - MTS software
-- [MTS how to](https://try-mts.com/why-try-mts/)
+- [MTS how to](https://try-mts.com/up-and-running-2-booting-the-system/) - Boot MTS
 - [c3270](https://x3270.miraheze.org/wiki/C3270) - 3270 emulator for Linux
 - [Zellij](https://zellij.dev/documentation/) - Zellij terminal multiplexer
 - [docker-mvs38j](https://github.com/MortenHarding/docker-mvs38j) - Github repo with docker files for building these containers
