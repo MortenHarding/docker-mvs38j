@@ -110,7 +110,7 @@ docker compose up -d
 
 This will pull the container images from [hub.docker.com](https://hub.docker.com/r/mhardingdk/mvs) 
 and start a container for each of the MVS TurnKey installations in this repo, 
-which includes `VM370, TK4, TK5, TK5upd2, MVS/CE`.
+which includes `VM370, TK4, TK5upd2, MVS/CE`.
 
 ![docker compose up -d](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/docker-compose-up.jpeg?raw=true)
 
@@ -220,23 +220,23 @@ http://localhost:8880
 
 ### Usernames and passwords
 
-| Name       | Username  | Pwd      | Type                 |
-|:-----------|:----------| --------:|:---------------------|
-| **vm370**  | CMSUSER   | CMSUSER  | [How to...](VM370.md#how-to-vm370-dosvs-and-c3270)            |
-|            | KICKS     | KICKS    | CMS                  |
-| **tk4**    | HERC01    | CUL8TR   | TSO                  |
-|            | HERC02    | CUL8TR   | TSO                  |
-|            | HERC03    | PASS4U   | TSO                  |
-|            | HERC04    | PASS4U   | TSO                  |
-|            | IBMUSER   | IBMPASS  | TSO                  |
-|**tk5/upd2**| HERC01    | CUL8TR   | TSO                  |
-|            | HERC02    | CUL8TR   | TSO                  |
-|            | HERC03    | PASS4U   | TSO                  |
-|            | HERC04    | PASS4U   | TSO                  |
-|  **ce**    | IBMUSER   | SYS1     | TSO                  |
-|            | MVSCE01   | CUL8TR   | TSO                  |
-|            | MVSCE02   | PASS4U   | TSO                  |
-|            | HERCULES  | HERCULES | Hercules http server |
+| Name      | Username  | Pwd      | Type                 |
+|:----------|:----------| --------:|:---------------------|
+| **vm370** | CMSUSER   | CMSUSER  | [How to...](VM370.md#how-to-vm370-dosvs-and-c3270)            |
+|           | KICKS     | KICKS    | CMS                  |
+| **tk4**   | HERC01    | CUL8TR   | TSO                  |
+|           | HERC02    | CUL8TR   | TSO                  |
+|           | HERC03    | PASS4U   | TSO                  |
+|           | HERC04    | PASS4U   | TSO                  |
+|           | IBMUSER   | IBMPASS  | TSO                  |
+|**tk5upd2**| HERC01    | CUL8TR   | TSO                  |
+|           | HERC02    | CUL8TR   | TSO                  |
+|           | HERC03    | PASS4U   | TSO                  |
+|           | HERC04    | PASS4U   | TSO                  |
+|  **ce**   | IBMUSER   | SYS1     | TSO                  |
+|           | MVSCE01   | CUL8TR   | TSO                  |
+|           | MVSCE02   | PASS4U   | TSO                  |
+|           | HERCULES  | HERCULES | Hercules http server |
 
 
 ## Container ports and mappings
@@ -247,7 +247,6 @@ http://localhost:8880
 |:----------|------------------------------------|
 | **vm370** | Includes DOS/VS [(Note 3)](#note-3)|
 | **tk4**   |                                    |
-| **tk5**   |                                    |
 |**tk5upd2**|                                    |
 | **ce**    |                                    |
 
@@ -262,8 +261,6 @@ http://localhost:8880
 |           | 8081      | 8884  | Hercules http server |
 | **tk4**   | 3270      | 3273  | tn3270               |
 |           | 8038      | 8883  | Hercules http server |
-| **tk5**   | 3270      | 3272  | tn3270               |
-|           | 8038      | 8882  | Hercules http server |
 |**tk5upd2**| 3270      | 3271  | tn3270               |
 |           | 8038      | 8881  | Hercules http server |
 |  **ce**   | 2120      |   21  | FTPD Server          |
@@ -291,12 +288,6 @@ The subdirectories in column `Host directory` will be created in the directory, 
 |           | ./tk4/log            | /log       |
 |           | ./tk4/dasd           | /dasd      |
 |           | ./tk4/doc            | /doc       |
-| **tk5**   | ./tk5/config         | /conf      |
-|           | ./tk5/printers       | /prt       |
-|           | ./tk5/punchcards     | /pch       |
-|           | ./tk5/log            | /log       |
-|           | ./tk5/dasd           | /dasd      |
-|           | ./tk5/doc            | /doc       |
 |**tk5upd2**| ./tk5upd2/config     | /conf      |
 |           | ./tk5upd2/printers   | /prt       |
 |           | ./tk5upd2/punchcards | /pch       |

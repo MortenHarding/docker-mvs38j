@@ -20,12 +20,6 @@ layout {
                 args "tk5upd2"
         }        
     }
-        tab name="TK5" {
-        pane name="tn3270 tk5" {
-                command "./tn3270"
-                args "tk5"
-        }
-    }
     tab name="TK4" focus=true {
 	pane name="tn3270 tk4" {
 		focus true
