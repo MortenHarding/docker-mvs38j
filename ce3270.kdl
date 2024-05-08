@@ -15,19 +15,19 @@ layout {
 		args "ce"
 	} 
     }
-    tab name="TK5upd2" {
-        pane name="tn3270 tk5upd2" {
+    tab name="TK5upd3" {
+        pane name="tn3270 tk5upd3" {
                 command "./tn3270"
-                args "tk5upd2"
+                args "tk5upd3"
         }        
     }
-        tab name="TK4" {
+    tab name="TK4" {
 		pane name="tn3270 tk4" {
                 command "./tn3270"
                 args "tk4"
         }
     }
-        tab name="VM370" {
+    tab name="VM370" {
         pane name="tn3270 vm370" {
                 command "./tn3270"
                 args "vm370"

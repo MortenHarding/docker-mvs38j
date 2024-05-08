@@ -2,10 +2,11 @@
 FROM mainframed767/mvsce:2.0.2
 USER root
 
+COPY --from=mhardingdk/mvs:herc4x /app/herc4x.zip /herc4x.zip
+
 # Setup MVS
 WORKDIR /
-COPY herc4x.zip \
-	mvs.sh \
+COPY mvs.sh \
 	tn3270 \
 	zel3270 \
 	zellij \
