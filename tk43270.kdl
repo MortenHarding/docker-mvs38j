@@ -14,10 +14,10 @@ layout {
 		args "ce"
 	} 
     }
-    tab name="TK5upd2" {
-        pane name="tn3270 tk5upd2" {
+    tab name="TK5upd3" {
+        pane name="tn3270 tk5upd3" {
                 command "./tn3270"
-                args "tk5upd2"
+                args "tk5upd3"
         }        
     }
     tab name="TK4" focus=true {

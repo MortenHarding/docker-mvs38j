@@ -30,19 +30,19 @@ services:
       - "./tk4/doc:/app/mvs/doc"
     stdin_open: true 
     tty: true
-  tk5upd2:
-    image: "mhardingdk/mvs:tk5upd2"
-    container_name: "tk5upd2"
+  tk5upd3:
+    image: "mhardingdk/mvs:tk5upd3"
+    container_name: "tk5upd3"
     ports:
       - "3271:3270"
       - "8881:8038"
     volumes:
-      - "./tk5upd2/config:/app/mvs/conf"
-      - "./tk5upd2/printers:/app/mvs/prt"
-      - "./tk5upd2/punchcards:/app/mvs/pch"
-      - "./tk5upd2/log:/app/mvs/log"
-      - "./tk5upd2/dasd:/app/mvs/dasd"
-      - "./tk5upd2/doc:/app/mvs/doc"
+      - "./tk5upd3/config:/app/mvs/conf"
+      - "./tk5upd3/printers:/app/mvs/prt"
+      - "./tk5upd3/punchcards:/app/mvs/pch"
+      - "./tk5upd3/log:/app/mvs/log"
+      - "./tk5upd3/dasd:/app/mvs/dasd"
+      - "./tk5upd3/doc:/app/mvs/doc"
     stdin_open: true 
     tty: true
   ce:

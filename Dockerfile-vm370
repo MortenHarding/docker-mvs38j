@@ -10,11 +10,12 @@ RUN apt-get update && apt-get install -y rsync locales curl unzip c3270 netbase 
 ENV LANG=en_US.utf8 \
 PATH="/app/hercules/herc4x/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
+COPY --from=mhardingdk/mvs:herc4x /app/herc4x.zip /app/mvs/herc4x.zip
+
 # Setup MVS
 WORKDIR /app/mvs
 EXPOSE 3270 8080 3221 3223 3505 3506 8888
 COPY tn3270 \
-	herc4x.zip \
 	vm370ce.dosvs \	
 	zel3270 \
 	zellij \

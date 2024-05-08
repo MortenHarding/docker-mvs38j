@@ -110,7 +110,7 @@ docker compose up -d
 
 This will pull the container images from [hub.docker.com](https://hub.docker.com/r/mhardingdk/mvs) 
 and start a container for each of the MVS TurnKey installations in this repo, 
-which includes `VM370, TK4, TK5upd2, MVS/CE`.
+which includes `VM370, TK4, tk5upd3, MVS/CE`.
 
 ![docker compose up -d](https://github.com/MortenHarding/docker-mvs38j/blob/main/assets/docker-compose-up.jpeg?raw=true)
 
@@ -122,13 +122,13 @@ E.g. if compose.yml is in your home directory `docker compose -f ~/compose.yml u
 
 To start a single container use the commands described below.
 
-For example if you'd like to start MVS TK5upd2 use:
+For example if you'd like to start MVS tk5upd3 use:
 
 ```sh
-docker compose up -d tk5upd2
+docker compose up -d tk5upd3
 ```
 
-The following example shows a single MVS Container tk5upd2 and c3270 emulator. 
+The following example shows a single MVS Container tk5upd3 and c3270 emulator. 
  * The container is started as described in the above command 
  * c3270 is accessed as described in [Access MVS using tn3270](#access-mvs-using-tn3270) 
  * The Hercules console is accessed as described in [Access the Hercules console](#access-the-hercules-console).
@@ -140,7 +140,7 @@ The following example shows a single MVS Container tk5upd2 and c3270 emulator.
 Stop and remove a single container
 
 ```sh
-docker compose down tk5upd2
+docker compose down tk5upd3
 ```
 
 ## Stop all containers
@@ -229,7 +229,7 @@ http://localhost:8880
 |           | HERC03    | PASS4U   | TSO                  |
 |           | HERC04    | PASS4U   | TSO                  |
 |           | IBMUSER   | IBMPASS  | TSO                  |
-|**tk5upd2**| HERC01    | CUL8TR   | TSO                  |
+|**tk5upd3**| HERC01    | CUL8TR   | TSO                  |
 |           | HERC02    | CUL8TR   | TSO                  |
 |           | HERC03    | PASS4U   | TSO                  |
 |           | HERC04    | PASS4U   | TSO                  |
@@ -247,7 +247,7 @@ http://localhost:8880
 |:----------|------------------------------------|
 | **vm370** | Includes DOS/VS [(Note 3)](#note-3)|
 | **tk4**   |                                    |
-|**tk5upd2**|                                    |
+|**tk5upd3**|                                    |
 | **ce**    |                                    |
 
 #### Note 3 
@@ -261,7 +261,7 @@ http://localhost:8880
 |           | 8081      | 8884  | Hercules http server |
 | **tk4**   | 3270      | 3273  | tn3270               |
 |           | 8038      | 8883  | Hercules http server |
-|**tk5upd2**| 3270      | 3271  | tn3270               |
+|**tk5upd3**| 3270      | 3271  | tn3270               |
 |           | 8038      | 8881  | Hercules http server |
 |  **ce**   | 2120      |   21  | FTPD Server          |
 |           | 2320      |   23  | Encrypted TN3270     |
@@ -288,12 +288,12 @@ The subdirectories in column `Host directory` will be created in the directory, 
 |           | ./tk4/log            | /log       |
 |           | ./tk4/dasd           | /dasd      |
 |           | ./tk4/doc            | /doc       |
-|**tk5upd2**| ./tk5upd2/config     | /conf      |
-|           | ./tk5upd2/printers   | /prt       |
-|           | ./tk5upd2/punchcards | /pch       |
-|           | ./tk5upd2/log        | /log       |
-|           | ./tk5upd2/dasd       | /dasd      |
-|           | ./tk5upd2/doc        | /doc       |
+|**tk5upd3**| ./tk5upd3/config     | /conf      |
+|           | ./tk5upd3/printers   | /prt       |
+|           | ./tk5upd3/punchcards | /pch       |
+|           | ./tk5upd3/log        | /log       |
+|           | ./tk5upd3/dasd       | /dasd      |
+|           | ./tk5upd3/doc        | /doc       |
 |  **ce**   | ./ce/config          | /config    |
 |           | ./ce/printers        | /printers  |
 |           | ./ce/punchcards      | /punchcards|
