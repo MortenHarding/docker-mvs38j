@@ -1,0 +1,39 @@
+# Using Debian as a base
+FROM debian:stable-slim
+RUN apt-get update && apt-get install -y rsync locales curl unzip c3270 netbase \
+&& rm -rf /var/lib/apt/lists/* \
+&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
+&& mkdir -p /app/mvs/backup \
+&& mkdir -p /app/mvs/backup/conf \
+&& mkdir -p /app/mvs/backup/log \
+&& mkdir -p /app/mvs/backup/doc
+ENV LANG=en_US.utf8 \
+PATH="/app/hercules/herc4x/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+COPY --from=mhardingdk/mvs:herc4x /app/herc4x.zip /app/mvs/herc4x.zip
+
+# Setup MTS
+WORKDIR /app/mvs
+EXPOSE 3270 8080 3221 3223 3505 3506 8888
+COPY mts.sh \
+	mts.zip \
+	tn3270 \
+	hercules-mts.cnf \	
+	zel3270 \
+	zellij \
+	herclogo.txt \
+	vm370ce.sh \
+	/app/mvs/
+RUN unzip mts.zip -d /app \
+&& rm mts.zip \
+&& mv /app/mts/d6.0A/* -t /app/mvs/backup \
+&& cp /app/mvs/hercules-mts.cnf /app/mvs/backup/conf/hercules-mts.conf \
+&& cp -r /app/mts/mtsDistDoc/*.* /app/mvs/backup/doc \
+&& rm -rf /app/__MACOSX \
+&& rm -rf /app/mts \
+&& unzip herc4x.zip -d /app/hercules/ \
+&& /app/hercules/herc4x/hyperion-init-bash.sh \
+&& rm herc4x.zip \
+&& chmod -R +x /app/*
+COPY mts3270.kdl /app/mvs/3270.kdl
+ENTRYPOINT ["/bin/bash","./mts.sh"]
