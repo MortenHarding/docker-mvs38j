@@ -8,9 +8,8 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
-    tab name="MVS/CE" focus=true {
+    tab name="MVS/CE" {
         pane name="tn3270 ce" {
-		focus true 
 		command "./tn3270" 
 		args "ce"
 	} 
@@ -33,10 +32,11 @@ layout {
                 args "vm370"
         }
     }
-    tab name="MTS" {
+    tab name="MTS" focus=true {
         pane name="tn3270 mts" {
+		focus true 
 		command "./tn3270" 
 		args "mts"
     	} 
-    }    
+    }
 }

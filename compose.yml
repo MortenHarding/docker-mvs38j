@@ -1,6 +1,21 @@
 # docker compose up --detach
 # docker compose down
 services:
+  mts:
+    image: "mhardingdk/mvs:mts"
+    container_name: "mts"
+    ports:
+      - "3275:3270"
+      - "8885:8081"
+    volumes:
+      - "./mts/config:/app/mvs/conf"
+      - "./mts/dasd:/app/mvs/Disks"
+      - "./mts/doc:/app/mvs/doc"
+      - "./mts/tapes:/app/mvs/Tapes"
+      - "./mts/units:/app/mvs/Units"
+      - "./mts/log:/app/mvs/log"
+    stdin_open: true
+    tty: true
   vm370:
     image: "mhardingdk/mvs:vm370"
     container_name: "vm370"

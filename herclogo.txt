@@ -44,7 +44,7 @@ Containers created by
 Morten Harding
 @SF P
 @ALIGN LEFT
-                    |MVS/CE|          .
+                  |MVS/CE|MTS|        .
                  |TK4|TK5|VM370|     ==
                 |Hercules|c3270|    ===
                /""""""""""""""""\___/ ===

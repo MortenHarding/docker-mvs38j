@@ -20,17 +20,23 @@ layout {
                 args "tk5upd3"
         }        
     }
-        tab name="TK4" {
+    tab name="TK4" {
 		pane name="tn3270 tk4" {
                 command "./tn3270"
                 args "tk4"
         }
     }
-        tab name="VM370" focus=true {
+    tab name="VM370" focus=true {
         pane name="tn3270 vm370" {
 		focus true
                 command "./tn3270"
                 args "vm370"
         }
     }
+    tab name="MTS" {
+        pane name="tn3270 mts" {
+		command "./tn3270" 
+		args "mts"
+    	} 
+    }    
 }

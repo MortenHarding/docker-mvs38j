@@ -33,4 +33,10 @@ layout {
                 args "vm370"
         }
     }
+    tab name="MTS" {
+        pane name="tn3270 mts" {
+		command "./tn3270" 
+		args "mts"
+    	} 
+    }    
 }
