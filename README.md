@@ -271,12 +271,14 @@ http://localhost:8880
 |           | 8038      | 8883  | Hercules http server |
 |**tk5upd3**| 3270      | 3271  | tn3270               |
 |           | 8038      | 8881  | Hercules http server |
+|           | 8080      | 8081  | Httpd server 2.0     |
 |  **ce**   | 2120      |   21  | FTPD Server          |
 |           | 2320      |   23  | Encrypted TN3270     |
 |           | 3270      | 3270  | tn3270               |
 |           | 3505      | 3505  | ASCII JES2 listener  |
 |           | 3506      | 3508  | EBCDIC JES2 listener |
 |           | 8888      | 8880  | Hercules http server |
+|           | 8080      | 8080  | Httpd server 2.0     |
 
 
 ## Volume mapping
