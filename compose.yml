@@ -51,7 +51,7 @@ services:
     ports:
       - "3271:3270"
       - "8881:8038"
-      - "8080:8080"
+      - "8081:8080"
     volumes:
       - "./tk5upd3/config:/app/mvs/conf"
       - "./tk5upd3/printers:/app/mvs/prt"
