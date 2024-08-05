@@ -202,7 +202,7 @@ listed in [Port mappings](#port-mappings).
 * Run the following command to access the Hercules console for MVS/CE.
 
 ```sh
-docker attach ce
+docker attach --detach-keys="ctrl-x" ce
 ```
 
 In the command example `ce` is the name of the docker container, the name
