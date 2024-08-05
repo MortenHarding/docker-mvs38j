@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y cmake make regina-rexx libregina3-dev s
 && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
 && useradd -m -d /app -s /bin/bash -g root -G sudo -p "$(openssl passwd -1 herc)" herc \
 && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-ENV LANG en_US.utf8
+ENV LANG=en_US.utf8
 USER herc
 RUN mkdir -p /app/hercules
 WORKDIR /app
