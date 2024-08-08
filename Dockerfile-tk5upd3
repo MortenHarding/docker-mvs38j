@@ -27,5 +27,6 @@ RUN curl -O https://www.prince-webdesign.nl/images/downloads/mvs-tk5.zip \
 && unzip herc4x.zip -d /app/mvs/backup/hercules/linux/ \
 && mv /app/mvs/backup/hercules/linux/herc4x /app/mvs/backup/hercules/linux/64 \
 && rm herc4x.zip \
+&& echo "/s httpd" >> /app/mvs/backup/local_scripts/01 \
 && chmod -R +x /app/*
 ENTRYPOINT ["/bin/bash","./mvs_docker"]

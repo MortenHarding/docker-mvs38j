@@ -218,6 +218,14 @@ Access the Hercules HTTP server for any of the MVS TurnKey installations, using 
 http://localhost:8880
 ```
 
+### Access HTTPD server 2.0 in TK5Upd3
+
+Access the HTTPD server 2.0 using a web browser. Port numbers are listed in [Port mappings](#port-mappings).
+
+```sh
+http://localhost:8081
+```
+
 ### Usernames and passwords
 
 | Name      | Username  | Pwd      | Type                 |
@@ -264,21 +272,20 @@ http://localhost:8880
 | Name/port | Container | Host  |                      |
 |:----------|----------:| -----:|:---------------------|
 | **mts**   | 3270      | 3275  | tn3270               |
-|           | 8081      | 8885  | Hercules http server |
+|           | 8081      | 8885  | [Hercules http server](http://localhost:8885) |
 | **vm370** | 3270      | 3274  | tn3270               |
-|           | 8081      | 8884  | Hercules http server |
+|           | 8081      | 8884  | [Hercules http server](http://localhost:8884) |
 | **tk4**   | 3270      | 3273  | tn3270               |
-|           | 8038      | 8883  | Hercules http server |
+|           | 8038      | 8883  | [Hercules http server](http://localhost:8883) |
 |**tk5upd3**| 3270      | 3271  | tn3270               |
-|           | 8038      | 8881  | Hercules http server |
-|           | 8080      | 8081  | Httpd server 2.0     |
+|           | 8038      | 8881  | [Hercules http server](http://localhost:8882) |
+|           | 8080      | 8081  | [Httpd server 2.0](http://localhost:8081)     |
 |  **ce**   | 2120      |   21  | FTPD Server          |
 |           | 2320      |   23  | Encrypted TN3270     |
 |           | 3270      | 3270  | tn3270               |
 |           | 3505      | 3505  | ASCII JES2 listener  |
 |           | 3506      | 3508  | EBCDIC JES2 listener |
-|           | 8888      | 8880  | Hercules http server |
-|           | 8080      | 8080  | Httpd server 2.0     |
+|           | 8888      | 8880  | [Hercules http server](http://localhost:8880) |
 
 
 ## Volume mapping
