@@ -4,6 +4,26 @@
 #   A template for use with MTS D6.0A   #
 #########################################
 
+# ============================================================================
+# HTTP Configuration for Hercules V4.x
+# ============================================================================
+# ----------------------------------------------------------------------------
+# Identify the port to find the the Operator Console.
+# Ensure you have allowed access to this port via iptables, or firewalld.
+# Default is 8081.
+# ----------------------------------------------------------------------------
+HTTP PORT ${HTTPPORT:=8081}
+# ----------------------------------------------------------------------------
+# This is the directory which contains the HTML pages of documentation.
+# ----------------------------------------------------------------------------
+#HTTP ROOT /usr/local/share/hercules/
+# ----------------------------------------------------------------------------
+# Start the web server, you should now be able to connect to http://host:8081
+# or whatever port you defined above.
+# ----------------------------------------------------------------------------
+HTTP START
+# ============================================================================
+
 # Adjust this template for use in your own environment
 
 # You'll need to put the D6 files in the right places.
