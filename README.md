@@ -125,7 +125,7 @@ To start a single container use the commands described below.
 For example if you'd like to start MVS TK5 use:
 
 ```sh
-docker compose up -d TK5
+docker compose up -d tk5
 ```
 
 The following example shows a single MVS Container TK5 and c3270 emulator. 
@@ -140,7 +140,7 @@ The following example shows a single MVS Container TK5 and c3270 emulator.
 Stop and remove a single container
 
 ```sh
-docker compose down TK5
+docker compose down tk5
 ```
 
 ## Stop all containers
@@ -280,6 +280,7 @@ http://localhost:8081
 | **tk5**   | 3270      | 3271  | tn3270               |
 |           | 8038      | 8881  | [Hercules http server](http://localhost:8881) |
 |           | 8080      | 8081  | [Httpd server 2.0](http://localhost:8081)     |
+|           | 8021      | 8021  | FTPD Server          |
 |  **ce**   | 2120      |   21  | FTPD Server          |
 |           | 2320      |   23  | Encrypted TN3270     |
 |           | 3270      | 3270  | tn3270               |
