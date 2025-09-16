@@ -1,5 +1,5 @@
 # Build MVSCE with c3270 and start of mvs in console mode
-FROM mainframed767/mvsce:2.0.3
+FROM mainframed767/mvsce:2.1.2
 USER root
 
 COPY --from=mhardingdk/mvs:herc4x /app/herc4x.zip /herc4x.zip

@@ -280,7 +280,7 @@ http://localhost:8081
 | **tk5**   | 3270      | 3271  | tn3270               |
 |           | 8038      | 8881  | [Hercules http server](http://localhost:8881) |
 |           | 8080      | 8081  | [Httpd server 2.0](http://localhost:8081)     |
-|           | 8021      | 8021  | FTPD Server          |
+|           | 8021      | 8022  | FTPD Server          |
 |  **ce**   | 2120      |   21  | FTPD Server          |
 |           | 2320      |   23  | Encrypted TN3270     |
 |           | 3270      | 3270  | tn3270               |

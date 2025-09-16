@@ -52,7 +52,7 @@ services:
       - "3271:3270"
       - "8881:8038"
       - "8081:8080"
-      - "8021:8021"
+      - "8022:8021"
     volumes:
       - "./tk5/config:/app/mvs/conf"
       - "./tk5/printers:/app/mvs/prt"
