@@ -1,0 +1,85 @@
+#########################################
+# Hercules emulator configuration file  #
+#########################################
+# Refer to https://sdl-hercules-390.github.io/html/hercconf.html
+#
+# ============================================================================
+# HTTP Configuration for Hercules V4.x
+# ============================================================================
+# ----------------------------------------------------------------------------
+# Identify the port to find the the Operator Console.
+# Ensure you have allowed access to this port via iptables, or firewalld.
+# Default is 8081.
+# ----------------------------------------------------------------------------
+HTTP PORT ${HTTPPORT:=8081}
+# ----------------------------------------------------------------------------
+# This is the directory which contains the HTML pages of documentation.
+# ----------------------------------------------------------------------------
+#HTTP ROOT /usr/local/share/hercules/
+# ----------------------------------------------------------------------------
+# Start the web server, you should now be able to connect to http://host:8081
+# or whatever port you defined above.
+# ----------------------------------------------------------------------------
+HTTP START
+# ============================================================================
+
+# Adjust this template for use in your own environment
+
+ARCHMODE  ESA/390  # includes 370-XA (MTS architecture code "MP")
+# CODEPAGE  437/037
+
+CPUSERIAL 002623
+CPUMODEL  3090
+CPUVERID FD
+NUMVEC 0
+SYSEPOCH 1900
+MAINSIZE  32
+
+# IPL parameter
+# LOADPARM  ........
+
+# Adjust the following two values for your local configuration
+# (in theory) up to 32 processors, although 6 processors is likely
+# the maximum number ever used in "real life".
+
+NUMCPU   1 
+# MAXCPU   1
+
+XPNDSIZE 0  # Use expanded storage as a write through
+            # disk cache, if expanded storage is present
+
+CNSLPORT 3280   # The console port, use telnet to connect
+# OSTAILOR QUIET
+
+###### Device definitions #####
+
+# Display and console devices
+
+# Diferent versions of Hercules support different printer options.
+# Uncomment one of the following three device definitions for addr 000E.
+# The three definitions are listed in order from newest to oldest
+# and from best to worst in terms of functionality. 
+# The nofcbcheck option supresses errors (command reject) when
+# a skip to an undefined printer carriage tape channel is used.
+# If the third (last) option is used, errors will result when 
+# HASP tries to print its head and tail sheets on the printer,
+# effectively making HASP printing unusable.
+
+# .-----------------------Device number
+# |     .-----------------Device type
+# |     |       .---------File name and parameters
+# |     |       |
+# V     V       V
+#---    ----    --------------------
+00C     3505    # card reader
+000C    1442
+000D    3525    pch/pch00d.txt ascii
+000E    1403    prt/prt00e.txt
+000F    3215	noprompt
+0201	3370	fba/musicxd.vol
+00F0    3215    # console access via telnet
+00F1    3270
+00F2    3270    # 43x80
+00F3    3270    # 27x132
+
+# END

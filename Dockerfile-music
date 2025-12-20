@@ -1,0 +1,43 @@
+# Using Debian as a base
+FROM debian:stable-slim
+RUN apt-get update && apt-get install -y rsync locales inetutils-telnet unzip c3270 netbase \
+&& rm -rf /var/lib/apt/lists/* \
+&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
+&& mkdir -p /app/mvs/backup \
+&& mkdir -p /app/mvs/backup/conf \
+&& mkdir -p /app/mvs/backup/log \
+&& mkdir -p /app/mvs/backup/prt \
+&& mkdir -p /app/mvs/backup/fba \
+&& mkdir -p /app/mvs/backup/pch \
+&& mkdir -p /app/mvs/backup/doc
+ENV LANG=en_US.utf8 \
+PATH="/app/hercules/herc4x/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+COPY --from=mhardingdk/mvs:herc4x /app/herc4x.zip /app/mvs/herc4x.zip
+
+# Setup Music/SP
+WORKDIR /app/mvs
+EXPOSE 3270 8080 3221 3223 3505 3506 8888
+COPY music.sh \
+	musdemo_b.zip \
+	manuals_mus51.zip \
+	tn3270 \
+	hercules-music.cnf \	
+	zel3270 \
+	zellij \
+	herclogo.txt \
+	/app/mvs/
+RUN unzip musdemo_b.zip -d /app/mvs/backup/fba \
+&& rm musdemo_b.zip \
+&& mv /app/mvs/backup/fba/readme.txt /app/mvs/backup/doc/musdemo_readme.txt \
+&& rm /app/mvs/backup/fba/printout.txt \
+&& rm /app/mvs/backup/fba/musicxdm.cfg \
+&& unzip manuals_mus51.zip -d /app/mvs/backup/doc \
+&& rm manuals_mus51.zip \
+&& cp /app/mvs/hercules-music.cnf /app/mvs/backup/conf/hercules-music.cnf \
+&& unzip herc4x.zip -d /app/hercules/ \
+&& /app/hercules/herc4x/hyperion-init-bash.sh \
+&& rm herc4x.zip \
+&& chmod -R +x /app/*
+COPY mts3270.kdl /app/mvs/3270.kdl
+ENTRYPOINT ["/bin/bash","./music.sh"]
