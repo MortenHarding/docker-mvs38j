@@ -48,7 +48,7 @@ NUMCPU   1
 XPNDSIZE 0  # Use expanded storage as a write through
             # disk cache, if expanded storage is present
 
-CNSLPORT 3280   # The console port, use telnet to connect
+CNSLPORT 3270   # The console port, use telnet to connect
 # OSTAILOR QUIET
 
 ###### Device definitions #####
