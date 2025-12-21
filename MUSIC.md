@@ -7,7 +7,7 @@ Before you can login to MUSIC/SP you have to run IPL
 Before you can IPL the system, you will have to open a telnet connection to the Hercules console port and attach to the Hercules emulator.
 
 * The Hercules console port
-Connect a telnet client to port 3280. You can use your own telnet client or the client in the docker container.
+Connect a telnet client to port 3270. You can use your own telnet client or the client in the docker container.
 Using your own client `telnet localhost 3270`
 Using the container client `docker exec -it music telnet localhost 3270`
 
