@@ -6,7 +6,6 @@ services:
     container_name: "music"
     ports:
       - "3276:3270"
-      - "3286:3280"
       - "8886:8081"
     volumes:
       - "./music/config:/app/mvs/conf"

@@ -8,8 +8,8 @@ Before you can IPL the system, you will have to open a telnet connection to the 
 
 * The Hercules console port
 Connect a telnet client to port 3280. You can use your own telnet client or the client in the docker container.
-Using your own client `telnet localhost 3280`
-Using the container client `docker exec -it music telnet localhost 3280`
+Using your own client `telnet localhost 3270`
+Using the container client `docker exec -it music telnet localhost 3270`
 
 * The Hercules emulator.
 Connect to the Hercules emulator using `docker attach --detach-keys="ctrl-x" music`

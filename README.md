@@ -276,8 +276,7 @@ http://localhost:8081
 
 | Name/port | Container | Host  |                      |
 |:----------|----------:| -----:|:---------------------|
-| **music** | 3270      | 3276  | tn3270               |
-|           | 3280      | 3280  | telnet               |
+| **music** | 3270      | 3276  | tn3270/telnet        |
 |           | 8081      | 8886  | [Hercules http server](http://localhost:8886) |
 | **mts**   | 3270      | 3275  | tn3270               |
 |           | 8081      | 8885  | [Hercules http server](http://localhost:8885) |
