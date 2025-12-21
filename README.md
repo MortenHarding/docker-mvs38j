@@ -228,25 +228,26 @@ http://localhost:8081
 
 ### Usernames and passwords
 
-| Name      | Username  | Pwd      | Type                 |
-|:----------|:----------| --------:|:---------------------|
-| **mts**   | MTS       | aardvarks| [How to...](#note-4) |
-|           | ST01      | ST01     |                      |
-| **vm370** | CMSUSER   | CMSUSER  | [How to...](VM370.md#how-to-vm370-dosvs-and-c3270)            |
-|           | KICKS     | KICKS    | CMS                  |
-| **tk4**   | HERC01    | CUL8TR   | TSO                  |
-|           | HERC02    | CUL8TR   | TSO                  |
-|           | HERC03    | PASS4U   | TSO                  |
-|           | HERC04    | PASS4U   | TSO                  |
-|           | IBMUSER   | IBMPASS  | TSO                  |
-|**tk5**    | HERC01    | CUL8TR   | TSO                  |
-|           | HERC02    | CUL8TR   | TSO                  |
-|           | HERC03    | PASS4U   | TSO                  |
-|           | HERC04    | PASS4U   | TSO                  |
-|  **ce**   | IBMUSER   | SYS1     | TSO                  |
-|           | MVSCE01   | CUL8TR   | TSO                  |
-|           | MVSCE02   | PASS4U   | TSO                  |
-|           | HERCULES  | HERCULES | Hercules http server |
+| Name         | Username  | Pwd      | Type                 |
+|:-------------|:----------| --------:|:---------------------|
+| **music/sp** | $000      | music    | [How to...](#note-5) |
+| **mts**      | MTS       | aardvarks| [How to...](#note-4) |
+|              | ST01      | ST01     |                      |
+| **vm370**    | CMSUSER   | CMSUSER  | [How to...](VM370.md#how-to-vm370-dosvs-and-c3270)            |
+|              | KICKS     | KICKS    | CMS                  |
+| **tk4**      | HERC01    | CUL8TR   | TSO                  |
+|              | HERC02    | CUL8TR   | TSO                  |
+|              | HERC03    | PASS4U   | TSO                  |
+|              | HERC04    | PASS4U   | TSO                  |
+|              | IBMUSER   | IBMPASS  | TSO                  |
+| **tk5**      | HERC01    | CUL8TR   | TSO                  |
+|              | HERC02    | CUL8TR   | TSO                  |
+|              | HERC03    | PASS4U   | TSO                  |
+|              | HERC04    | PASS4U   | TSO                  |
+|  **ce**      | IBMUSER   | SYS1     | TSO                  |
+|              | MVSCE01   | CUL8TR   | TSO                  |
+|              | MVSCE02   | PASS4U   | TSO                  |
+|              | HERCULES  | HERCULES | Hercules http server |
 
 
 ## Container ports and mappings
@@ -255,6 +256,7 @@ http://localhost:8081
 
 | Container |                                    |
 |:----------|------------------------------------|
+| **music** | Must be ipl'ed  [(Note 5)](#note-5)|
 | **mts**   | Must be ipl'ed  [(Note 4)](#note-4)|
 | **vm370** | Includes DOS/VS [(Note 3)](#note-3)|
 | **tk4**   |                                    |
@@ -267,10 +269,16 @@ http://localhost:8081
 #### Note 4
 [MTS](https://try-mts.com/up-and-running-2-booting-the-system/) must be manually ipl'ed as described in the link.
 
+#### Note 5
+[MUSIC/SP](MUSIC.md) must be manually ipl'ed as described in the link.
+
 ### Port mappings
 
 | Name/port | Container | Host  |                      |
 |:----------|----------:| -----:|:---------------------|
+| **music** | 3270      | 3276  | tn3270               |
+|           | 3280      | 3280  | telnet               |
+|           | 8081      | 8886  | [Hercules http server](http://localhost:8886) |
 | **mts**   | 3270      | 3275  | tn3270               |
 |           | 8081      | 8885  | [Hercules http server](http://localhost:8885) |
 | **vm370** | 3270      | 3274  | tn3270               |
@@ -295,6 +303,12 @@ The subdirectories in column `Host directory` will be created in the directory, 
 
 | Name      | Host directory       | Container  |
 |:----------| :--------------------|:-----------|
+| **music** | ./mts/config         | /conf      |
+|           | ./mts/log            | /log       |
+|           | ./mts/doc            | /doc       |
+|           | ./mts/dasd           | /dasd      |
+|           | ./mts/fba            | /fba       |
+|           | ./mts/prt            | /prt       |
 | **mts**   | ./mts/config         | /conf      |
 |           | ./mts/log            | /log       |
 |           | ./mts/doc            | /doc       |
@@ -337,6 +351,7 @@ The following software is used in the containers in this repo.
 - [VM370](http://www.vm370.org) - VM/370 Community Edition
 - [DOS/VS](http://www.vm370.org/dos) - DOS/VS 5pack release
 - [MTS](https://try-mts.com/up-and-running-2-booting-the-system/) - Michigan Terminal System
+- [MUSIC/SP](https://www.canpub.com/teammpg/de/sim390/techinfo.htm) - Sim390 Emulator - Technical Info
 - [c3270](https://x3270.miraheze.org/wiki/C3270) - 3270 emulator for Linux
 - [Zellij](https://zellij.dev/documentation/) - Zellij terminal multiplexer
 - [docker-mvs38j](https://github.com/MortenHarding/docker-mvs38j) - Github repo with docker files for building these containers

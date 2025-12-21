@@ -39,5 +39,5 @@ RUN unzip musdemo_b.zip -d /app/mvs/backup/fba \
 && /app/hercules/herc4x/hyperion-init-bash.sh \
 && rm herc4x.zip \
 && chmod -R +x /app/*
-COPY mts3270.kdl /app/mvs/3270.kdl
+COPY music3270.kdl /app/mvs/3270.kdl
 ENTRYPOINT ["/bin/bash","./music.sh"]

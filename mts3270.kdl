@@ -39,4 +39,10 @@ layout {
 		args "mts"
     	} 
     }
+    tab name="MUSIC" {
+        pane name="tn3270 music" {
+		command "./tn3270" 
+		args "music"
+    	} 
+    }
 }

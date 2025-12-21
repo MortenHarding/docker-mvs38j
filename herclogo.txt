@@ -44,6 +44,7 @@ Containers created by
 Morten Harding
 @SF P
 @ALIGN LEFT
+                   |MUSIC/SP|
                   |MVS/CE|MTS|        .
                  |TK4|TK5|VM370|     ==
                 |Hercules|c3270|    ===
@@ -52,7 +53,6 @@ Morten Harding
                \______ @          __/
                  \    \        __/            
                   \____\______/               
-
                __ |  __   __ | _  __   _          
               /  \| /  \ /   |/  / _\ |     
               \__/| \__/ \__ |\_ \__  | 
