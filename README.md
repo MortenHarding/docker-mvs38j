@@ -230,7 +230,7 @@ http://localhost:8081
 
 | Name         | Username  | Pwd      | Type                 |
 |:-------------|:----------| --------:|:---------------------|
-| **music/sp** | $000      | music    | [How to...](#note-5) |
+| **music/sp** | $000      | music    |                      |
 | **mts**      | MTS       | aardvarks| [How to...](#note-4) |
 |              | ST01      | ST01     |                      |
 | **vm370**    | CMSUSER   | CMSUSER  | [How to...](VM370.md#how-to-vm370-dosvs-and-c3270)            |
@@ -256,7 +256,7 @@ http://localhost:8081
 
 | Container |                                    |
 |:----------|------------------------------------|
-| **music** | Must be ipl'ed  [(Note 5)](#note-5)|
+| **music** |                                    |
 | **mts**   | Must be ipl'ed  [(Note 4)](#note-4)|
 | **vm370** | Includes DOS/VS [(Note 3)](#note-3)|
 | **tk4**   |                                    |
@@ -268,9 +268,6 @@ http://localhost:8081
 
 #### Note 4
 [MTS](https://try-mts.com/up-and-running-2-booting-the-system/) must be manually ipl'ed as described in the link.
-
-#### Note 5
-[MUSIC/SP](MUSIC.md) must be manually ipl'ed as described in the link.
 
 ### Port mappings
 

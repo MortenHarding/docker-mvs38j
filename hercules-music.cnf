@@ -75,7 +75,7 @@ CNSLPORT 3270   # The console port, use telnet to connect
 000C    1442
 000D    3525    pch/pch00d.txt ascii
 000E    1403    prt/prt00e.txt
-000F    3215	noprompt        # console access via telnet
+000F    3215-C	noprompt        # console access via telnet
 0201	3370	fba/musicxd.vol
 00F0    3270
 00F1    3270

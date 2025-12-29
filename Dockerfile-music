@@ -26,12 +26,14 @@ COPY music.sh \
 	zel3270 \
 	zellij \
 	herclogo.txt \
+	hercules-music.rc \
 	/app/mvs/
 RUN unzip musdemo_b.zip -d /app/mvs/backup/fba \
 && rm musdemo_b.zip \
 && mv /app/mvs/backup/fba/readme.txt /app/mvs/backup/doc/musdemo_readme.txt \
 && rm /app/mvs/backup/fba/printout.txt \
 && rm /app/mvs/backup/fba/musicxdm.cfg \
+&& mv hercules-music.rc hercules.rc \
 && unzip manuals_mus51.zip -d /app/mvs/backup/doc \
 && rm manuals_mus51.zip \
 && cp /app/mvs/hercules-music.cnf /app/mvs/backup/conf/hercules-music.cnf \
