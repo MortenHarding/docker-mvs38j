@@ -235,11 +235,6 @@ http://localhost:8081
 |              | ST01      | ST01     |                      |
 | **vm370**    | CMSUSER   | CMSUSER  | [How to...](VM370.md#how-to-vm370-dosvs-and-c3270)            |
 |              | KICKS     | KICKS    | CMS                  |
-| **tk4**      | HERC01    | CUL8TR   | TSO                  |
-|              | HERC02    | CUL8TR   | TSO                  |
-|              | HERC03    | PASS4U   | TSO                  |
-|              | HERC04    | PASS4U   | TSO                  |
-|              | IBMUSER   | IBMPASS  | TSO                  |
 | **tk5**      | HERC01    | CUL8TR   | TSO                  |
 |              | HERC02    | CUL8TR   | TSO                  |
 |              | HERC03    | PASS4U   | TSO                  |
@@ -259,7 +254,6 @@ http://localhost:8081
 | **music** |                                    |
 | **mts**   | Must be ipl'ed  [(Note 4)](#note-4)|
 | **vm370** | Includes DOS/VS [(Note 3)](#note-3)|
-| **tk4**   |                                    |
 | **tk5**   |                                    |
 | **ce**    |                                    |
 
@@ -279,8 +273,6 @@ http://localhost:8081
 |           | 8081      | 8885  | [Hercules http server](http://localhost:8885) |
 | **vm370** | 3270      | 3274  | tn3270               |
 |           | 8081      | 8884  | [Hercules http server](http://localhost:8884) |
-| **tk4**   | 3270      | 3273  | tn3270               |
-|           | 8038      | 8883  | [Hercules http server](http://localhost:8883) |
 | **tk5**   | 3270      | 3271  | tn3270               |
 |           | 8038      | 8881  | [Hercules http server](http://localhost:8881) |
 |           | 8080      | 8081  | [Httpd server 2.0](http://localhost:8081)     |
@@ -316,12 +308,6 @@ The subdirectories in column `Host directory` will be created in the directory, 
 |           | ./vm370/doc          | /doc       |
 |           | ./vm370/dasd         | /disks     |
 |           | ./vm370/dosvs        | /dosvs     |
-| **tk4**   | ./tk4/config         | /conf      |
-|           | ./tk4/printers       | /prt       |
-|           | ./tk4/punchcards     | /pch       |
-|           | ./tk4/log            | /log       |
-|           | ./tk4/dasd           | /dasd      |
-|           | ./tk4/doc            | /doc       |
 | **tk5**   | ./tk5/config         | /conf      |
 |           | ./tk5/printers       | /prt       |
 |           | ./tk5/punchcards     | /pch       |
@@ -343,7 +329,6 @@ The following software is used in the containers in this repo.
 - [Hercules](https://hercules-390.github.io/html/) - Hercules System/370, ESA/390, and z/Architecture Emulator
 - [MVS/CE](https://hub.docker.com/r/mainframed767/mvsce) - MVS/CE Docker image - By mainframed767
 - [MVS Turn Key 5](https://www.prince-webdesign.nl/index.php/software/mvs-3-8j-turnkey-5) - by Rob Prins
-- [MVS Turn Key 4](https://wotho.pebble-beach.ch/tk4-) - by Juergen Winkelmann
 - [VM370](http://www.vm370.org) - VM/370 Community Edition
 - [DOS/VS](http://www.vm370.org/dos) - DOS/VS 5pack release
 - [MTS](https://try-mts.com/up-and-running-2-booting-the-system/) - Michigan Terminal System
@@ -351,4 +336,3 @@ The following software is used in the containers in this repo.
 - [c3270](https://x3270.miraheze.org/wiki/C3270) - 3270 emulator for Linux
 - [Zellij](https://zellij.dev/documentation/) - Zellij terminal multiplexer
 - [docker-mvs38j](https://github.com/MortenHarding/docker-mvs38j) - Github repo with docker files for building these containers
-

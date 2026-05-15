@@ -22,7 +22,7 @@ COPY tn3270 \
 	herclogo.txt \
 	vm370ce.sh \
 	/app/mvs/
-RUN curl -k -O http://www.vm370.org/sites/default/files/2022-07/VM370CE.V1.R1.2.zip \
+RUN curl -k -O https://vm370.org/sites/default/files/software/VM370CE.V1.R1.2.zip \
 && unzip VM370CE.V1.R1.2.zip -d /app \
 && rm VM370CE.V1.R1.2.zip \
 && mv /app/VM370CE.V1.R1.2/* -t /app/mvs/backup \
@@ -35,9 +35,9 @@ RUN curl -k -O http://www.vm370.org/sites/default/files/2022-07/VM370CE.V1.R1.2.
 COPY vm3703270.kdl /app/mvs/3270.kdl
 
 #Get DOS/VS
-RUN curl -k -O http://www.vm370.org/sites/default/files/2022-07/DOSVS_5Pack_V1.0-full.zip \
+RUN curl -k -O https://vm370.org/sites/default/files/software/DOSVS_5Pack_V1.0-full.zip \
 && unzip DOSVS_5Pack_V1.0-full.zip -d /app/mvs/backup \
 && rm DOSVS_5Pack_V1.0-full.zip \
-&& mv /app/mvs/backup/DOSVS_5Pack_V1.0-full/* -t /app/mvs/backup/dosvs \
+&& mv /app/mvs/backup/*.* -t /app/mvs/backup/dosvs \
 && chmod -R +x /app/*
 ENTRYPOINT ["/bin/bash","./vm370ce.sh"]

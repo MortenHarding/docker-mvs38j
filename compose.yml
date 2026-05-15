@@ -46,21 +46,6 @@ services:
       - "./vm370/log:/app/mvs/log"
     stdin_open: true
     tty: true
-  tk4:
-    image: "mhardingdk/mvs:tk4"
-    container_name: "tk4"
-    ports:
-      - "3273:3270"
-      - "8883:8038"
-    volumes:
-      - "./tk4/config:/app/mvs/conf"
-      - "./tk4/printers:/app/mvs/prt"
-      - "./tk4/punchcards:/app/mvs/pch"
-      - "./tk4/log:/app/mvs/log"
-      - "./tk4/dasd:/app/mvs/dasd"
-      - "./tk4/doc:/app/mvs/doc"
-    stdin_open: true 
-    tty: true
   tk5:
     image: "mhardingdk/mvs:tk5"
     container_name: "tk5"

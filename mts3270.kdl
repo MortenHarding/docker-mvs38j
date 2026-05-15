@@ -20,12 +20,6 @@ layout {
                 args "tk5"
         }        
     }
-    tab name="TK4" {
-		pane name="tn3270 tk4" {
-                command "./tn3270"
-                args "tk4"
-        }
-    }
     tab name="VM370" {
         pane name="tn3270 vm370" {
                 command "./tn3270"
